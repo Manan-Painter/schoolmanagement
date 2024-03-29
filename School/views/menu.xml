@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="menu_school_root"
+            name="School"
+            sequence="0"/>
+
+        <menuitem
+            id="menu_student_root"
+            name="Student"
+            parent = "menu_school_root"
+            sequence="0"/>
+
+        <menuitem
+            id="menu_admission_root"
+            name="Admission Form"
+            parent = "menu_student_root"
+            sequence="0"/>
+
+<!--         <menuitem-->
+<!--            id="menu_student_list_root"-->
+<!--            name="Student List"-->
+<!--            parent = "menu_admission_root"-->
+<!--            action = "action_school_admission"-->
+<!--            sequence="0"/>-->
+    </data>
+</odoo>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_hotel_customer_tree" model="ir.ui.view">
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="standard"/>
+                <field name="date_of_birth"/>
+                <field name="student_age"/>
+
+                <field name="gender"/>
+                <field name="address"/>
+                <field name="city"/>
+                <field name="contact"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hotel_customer_form" model="ir.ui.view">
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="standard"/>
+                            <field name="date_of_birth"/>
+                            <field name="student_age"/>
+
+                        </group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="address"/>
+                            <field name="city"/>
+                            <field name="contact"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_school_admission">
+        <field name="name">Admission Form</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first addmission form
+            </p>
+        </field>
+    </record>
+
+</odoo>
