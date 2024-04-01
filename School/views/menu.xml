@@ -1,29 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <menuitem
+    <menuitem
             id="menu_school_root"
             name="School"
             sequence="0"/>
 
-        <menuitem
+    <menuitem
             id="menu_student_root"
             name="Student"
-            parent = "menu_school_root"
+            parent="menu_school_root"
             sequence="0"/>
 
-        <menuitem
-            id="menu_admission_root"
-            name="Admission Form"
-            parent = "menu_student_root"
-            sequence="0"/>
-
-         <menuitem
+    <menuitem
             id="menu_student_list_root"
             name="Student List"
-            parent = "menu_admission_root"
-            action = "action_school_admission"
+            parent="menu_student_root"
+            action="action_school_list"
+            sequence="0"/>
+    <menuitem
+            id="menu_admission_root"
+            name="Admission Form"
+            parent="menu_student_root"
+            action="action_school_admission"
             sequence="0"/>
 
-    </data>
+    <menuitem
+            id="menu_staff_root"
+            name="Staff"
+            parent="menu_school_root"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_staff_teacher_root"
+            name="Teacher"
+            parent="menu_staff_root"
+            action="action_teacher_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_staff_peon_root"
+            name="Peon"
+            parent="menu_staff_root"
+            action="action_peon_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_staff_guardian_root"
+            name="Guardian"
+            parent="menu_staff_root"
+            action="action_guardian_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_Attendance_root"
+            name="Attendance"
+            parent="menu_school_root"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_student_attendance_root"
+            name="Student"
+            parent="menu_Attendance_root"
+            action="action_student_attendance_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_teacher_attendance_root"
+            name="Teacher"
+            parent="menu_Attendance_root"
+            action="action_teacher_attendance_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_guardian_attendance_root"
+            name="Guardian"
+            parent="menu_Attendance_root"
+            action="action_guardian_attendance_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_peon_attendance_root"
+            name="Peon"
+            parent="menu_Attendance_root"
+            action="action_teacher_attendance_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_time_table_root"
+            name="Time Table"
+            parent="menu_school_root"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_student_time_table_root"
+            name="Student"
+            parent="menu_time_table_root"
+            action="action_student_time_table_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_teacher_time_table_root"
+            name="Teacher"
+            parent="menu_time_table_root"
+            action="action_teacher_time_table_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_payment_root"
+            name="Payments"
+            parent="menu_school_root"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_semester_fees_root"
+            name="Semester Fees"
+            parent="menu_payment_root"
+            action="action_semester_fees_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_exam_fees_root"
+            name="Exam Fees"
+            parent="menu_payment_root"
+            action="action_exam_fees_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_bus_fees_root"
+            name="Bus Fees"
+            parent="menu_payment_root"
+            action="action_bus_fees_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_books_fees_root"
+            name="Books Fees"
+            parent="menu_payment_root"
+            action="action_books_fees_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_exam_root"
+            name="Exams"
+            parent="menu_school_root"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_exam_from_root"
+            name="Exam Form"
+            parent="menu_exam_root"
+            action="action_exam_form_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_hall_ticket_root"
+            name="Hall Ticket"
+            parent="menu_exam_root"
+            action="action_hall_ticket_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_exam_attendance_root"
+            name="Exam Attendance"
+            parent="menu_exam_root"
+            action="action_exam_attendance_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_result_root"
+            name="Result"
+            parent="menu_exam_root"
+            action="action_result_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_submission_root"
+            name="Submission"
+            parent="menu_school_root"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_assignment_root"
+            name="Assignment"
+            parent="menu_submission_root"
+            action="action_assignment_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_home_work_root"
+            name="Home Work"
+            parent="menu_submission_root"
+            action="action_home_work_list"
+            sequence="0"/>
+
 </odoo>

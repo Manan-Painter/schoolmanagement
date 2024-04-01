@@ -1,42 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
-    <record id="view_hotel_customer_search" model="ir.ui.view">
-        <field name="model">admission.student</field>
+      <record id="view_hotel_customer_search" model="ir.ui.view">
+        <field name="model">school.student</field>
         <field name="arch" type="xml">
             <search>
                 <field name="first_name"/>
                 <field name="last_name"/>
                 <field name="gender"/>
-                <field name="city"/>
             </search>
         </field>
     </record>
 
     <record id="view_hotel_customer_tree" model="ir.ui.view">
-        <field name="model">admission.student</field>
+        <field name="model">school.student</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="first_name"/>
                 <field name="last_name"/>
-                <field name="father_name"/>
-                <field name="mother_name"/>
-                <field name="student_age"/>
-                <field name="city"/>
-                <field name="last_standard"/>
-                <field name="current_standard"/>
-                <field name="date_of_birth"/>
-                <field name="address"/>
+                <field name="standard"/>
                 <field name="gender"/>
+                <field name="address"/>
                 <field name="contact"/>
-
             </tree>
         </field>
     </record>
 
+
     <record id="view_hotel_customer_form" model="ir.ui.view">
-        <field name="model">admission.student</field>
+        <field name="model">school.student</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -44,17 +36,11 @@
                         <group>
                             <field name="first_name"/>
                             <field name="last_name"/>
-                            <field name="father_name"/>
-                            <field name="mother_name"/>
-                            <field name="student_age"/>
-                            <field name="city"/>
+                            <field name="standard"/>
                         </group>
                         <group>
-                            <field name="last_standard"/>
-                            <field name="current_standard"/>
-                            <field name="date_of_birth"/>
-                            <field name="address"/>
                             <field name="gender"/>
+                            <field name="address"/>
                             <field name="contact"/>
                         </group>
                     </group>
@@ -63,9 +49,9 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="action_school_admission">
-        <field name="name">Admission Form</field>
-        <field name="res_model">admission.student</field>
+    <record model="ir.actions.act_window" id="action_school_list">
+        <field name="name">School List</field>
+        <field name="res_model">school.student</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{}</field>
         <field name="help" type="html">

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hotel_customer_search" model="ir.ui.view">
+        <field name="model">attendance.guardian</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="present"/>
+                <field name="absent"/>
+                <field name="remark"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_hotel_customer_tree" model="ir.ui.view">
+        <field name="model">attendance.guardian</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="present"/>
+                <field name="absent"/>
+                <field name="remark"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_hotel_customer_form" model="ir.ui.view">
+        <field name="model">attendance.guardian</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="present"/>
+                            <field name="absent"/>
+                        </group>
+                        <group>
+                            <field name="remark"/>
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_guardian_attendance_list">
+        <field name="name">Guardian Attendance</field>
+        <field name="res_model">attendance.guardian</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first addmission form
+            </p>
+        </field>
+    </record>
+
+</odoo>
