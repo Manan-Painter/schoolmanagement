@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_attendance_
-    teacher_search" model="ir.ui.view">
+    <record id="view_attendance_teacher_search" model="ir.ui.view">
         <field name="model">attendance.teacher</field>
         <field name="arch" type="xml">
             <search>
@@ -40,6 +39,7 @@
                             <field name="name"/>
                             <field name="present"/>
                             <field name="absent"/>
+                            <field name="teacher_ids"/>
                         </group>
                         <group>
                             <field name="remark"/>

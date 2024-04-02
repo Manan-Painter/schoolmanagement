@@ -37,6 +37,7 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="name"/>
                             <field name="full_name"/>
                             <field name="year"/>
                             <field name="roll_no"/>
@@ -45,6 +46,8 @@
                             <field name="standard"/>
                             <field name="section"/>
                             <field name="contact_no"/>
+                            <field name="student_id"/>
+                            <field name="city"/>
                         </group>
                     </group>
                 </sheet>

@@ -14,6 +14,6 @@ class teacher(models.Model):
     city = fields.Char(string="City")
     contact = fields.Char(string="Contact")
     student_ids = fields.One2many('school.student', 'teacher_id', string='Students')
-
+    attendance_id = fields.Many2one('attendance.teacher','attendance')
     def new_method(self):
         pass

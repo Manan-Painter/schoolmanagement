@@ -49,10 +49,12 @@
                             <field name="address"/>
                             <field name="city"/>
                             <field name="contact"/>
+                            <field name="attendance_id"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Students" name="students">
+                            <field name="attendance_id"/>
                             <field name="student_ids">
                                 <tree>
                                     <field name="first_name"/>

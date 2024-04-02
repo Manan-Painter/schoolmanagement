@@ -54,6 +54,7 @@
                         <group>
                             <field name="gender"/>
                             <field name="teacher_id"/>
+                            <field name="name"/>
 <!--                            <field name="qualification"/>-->
                             <field name="address"/>
                             <field name="contact"/>

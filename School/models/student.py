@@ -4,6 +4,7 @@ class student(models.Model):
     _name = "school.student"
     _description = "student details"
 
+    name = fields.Char(string="Name")
     first_name = fields.Char(string="First Name")
     last_name = fields.Char(string="Last Name")
     standard = fields.Char(string="Standard")
@@ -16,3 +17,4 @@ class student(models.Model):
     teacher_id = fields.Many2one('teacher.student', string='Teacher')
     partner_id = fields.Many2one('res.partner', string='partner')
     qualification = fields.Char(string="Teacher Qualification", related='teacher_id.qualification')
+    student_ids = fields.One2many('bus.fees', 'student_id', string='Students')
