@@ -13,3 +13,6 @@ class student(models.Model):
     address = fields.Char(string="Address")
     city = fields.Char(string="City")
     contact = fields.Char(string="Contact")
+    teacher_id = fields.Many2one('teacher.student', string='Teacher')
+    partner_id = fields.Many2one('res.partner', string='partner')
+    qualification = fields.Char(string="Teacher Qualification", related='teacher_id.qualification')

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_hotel_customer_search" model="ir.ui.view">
+    <record id="view_exam_attendance_search" model="ir.ui.view">
         <field name="model">exam.form</field>
         <field name="arch" type="xml">
             <search>
@@ -14,7 +14,7 @@
         </field>
     </record>
 
-    <record id="view_hotel_customer_tree" model="ir.ui.view">
+    <record id="view_exam_attendance_tree" model="ir.ui.view">
         <field name="model">exam.attendance</field>
         <field name="arch" type="xml">
             <tree>
@@ -29,7 +29,7 @@
     </record>
 
 
-    <record id="view_hotel_customer_form" model="ir.ui.view">
+    <record id="view_exam_attendance_form" model="ir.ui.view">
         <field name="model">exam.attendance</field>
         <field name="arch" type="xml">
             <form>

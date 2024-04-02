@@ -30,7 +30,8 @@
     </record>
 
 
-    <record id="view_hotel_customer_form" model="ir.ui.view">
+    <record id="view_teacher_form" model="ir.ui.view">
+        <field name="name">view.teacher.form</field>
         <field name="model">teacher.student</field>
         <field name="arch" type="xml">
             <form>
@@ -41,6 +42,7 @@
                             <field name="last_name"/>
                             <field name="dob"/>
                             <field name="qualification"/>
+                            <field name="name"/>
                         </group>
                         <group>
                             <field name="gender"/>
@@ -49,6 +51,21 @@
                             <field name="contact"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Students" name="students">
+                            <field name="student_ids">
+                                <tree>
+                                    <field name="first_name"/>
+                                    <field name="last_name"/>
+                                    <field name="date_of_birth"/>
+                                    <field name="contact"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Teacher" name="Teacher">
+
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
