@@ -43,12 +43,15 @@
                             <field name="year"/>
                             <field name="roll_no"/>
                             <field name="standard"/>
+                            <field name="name"/>
                         </group>
                         <group>
                             <field name="section"/>
                             <field name="date"/>
                             <field name="date"/>
                             <field name="subject"/>
+                            <field name="experience"/>
+                            <field name="form_ids"/>
                         </group>
                     </group>
                 </sheet>

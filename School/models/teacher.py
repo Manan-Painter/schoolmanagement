@@ -15,5 +15,7 @@ class teacher(models.Model):
     contact = fields.Char(string="Contact")
     student_ids = fields.One2many('school.student', 'teacher_id', string='Students')
     attendance_id = fields.Many2one('attendance.teacher','attendance')
+    # teacher_id = fields.Char(string="ID")
+    peon_ids = fields.Many2many("peon.student",string="peon")
     def new_method(self):
         pass

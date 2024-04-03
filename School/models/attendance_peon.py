@@ -10,3 +10,5 @@ class attendance_peon(models.Model):
     remark = fields.Char(string="Remark")
     start_time = fields.Datetime(string="Start Time")
     end_time = fields.Datetime(string="End Time")
+    peon_id = fields.Many2one('peon.student', 'Peon')
+

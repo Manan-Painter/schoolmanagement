@@ -2,7 +2,7 @@
 <odoo>
 
     <record id="view_attendance_teacher_search" model="ir.ui.view">
-        <field name="model">attendance.teacher</field>
+        <field name="model">attendance.peon</field>
         <field name="arch" type="xml">
             <search>
                 <field name="name"/>
@@ -14,7 +14,7 @@
     </record>
 
     <record id="view_attendance_teacher_tree" model="ir.ui.view">
-        <field name="model">attendance.teacher</field>
+        <field name="model">attendance.peon</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
@@ -29,8 +29,8 @@
     </record>
 
 
-    <record id="view_attendance_teacher_form" model="ir.ui.view">
-        <field name="model">attendance.teacher</field>
+    <record id="view_attendance_peon_form" model="ir.ui.view">
+        <field name="model">attendance.peon</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -44,6 +44,7 @@
                             <field name="remark"/>
                             <field name="start_time"/>
                             <field name="end_time"/>
+                            <field name="peon_id"/>
                         </group>
                     </group>
                 </sheet>
@@ -51,9 +52,9 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="action_teacher_attendance_list">
+    <record model="ir.actions.act_window" id="action_peon_attendance_list">
         <field name="name">Peon Attendance</field>
-        <field name="res_model">attendance.teacher</field>
+        <field name="res_model">attendance.peon</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{}</field>
         <field name="help" type="html">

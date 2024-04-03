@@ -5,10 +5,11 @@
         <field name="model">peon.student</field>
         <field name="arch" type="xml">
             <search>
-                <field name="first_name"/>
+                <field name="first_name" />
                 <field name="last_name"/>
-                <field name="qualification"/>
+                <field name="qualification" />
                 <field name="gender"/>
+                <field name="peon_ids"/>
             </search>
         </field>
     </record>
@@ -41,12 +42,15 @@
                             <field name="last_name"/>
                             <field name="dob"/>
                             <field name="qualification"/>
+                            <field name="teacher_ids" widget="many2many_tags"/>
                         </group>
                         <group>
                             <field name="gender"/>
                             <field name="address"/>
                             <field name="city"/>
                             <field name="contact"/>
+                            <field name="name"/>
+                            <field name="peon_ids"/>
                         </group>
                     </group>
                 </sheet>

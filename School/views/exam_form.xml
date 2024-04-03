@@ -39,11 +39,14 @@
                             <field name="student_name"/>
                             <field name="year"/>
                             <field name="roll_no"/>
+                            <field name="name"/>
+                            <field name="experience"/>
                         </group>
                         <group>
                             <field name="standard"/>
                             <field name="section"/>
                             <field name="date"/>
+                            <field name="submission_id"/>
                         </group>
                     </group>
                 </sheet>

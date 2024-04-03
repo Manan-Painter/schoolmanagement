@@ -82,7 +82,7 @@
             id="menu_peon_attendance_root"
             name="Peon"
             parent="menu_Attendance_root"
-            action="action_teacher_attendance_list"
+            action="action_peon_attendance_list"
             sequence="0"/>
 
     <menuitem
