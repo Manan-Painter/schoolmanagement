@@ -31,6 +31,7 @@
         <field name="model">school.student</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="name"/>
                 <field name="first_name"/>
                 <field name="last_name"/>
             </tree>
@@ -54,6 +55,7 @@
                             <field name="first_name"/>
                             <field name="last_name"/>
                             <field name="standard"/>
+                            <field name="student_age"/>
 <!--                            <field name="partner_id"/>-->
                         </group>
                         <group>
