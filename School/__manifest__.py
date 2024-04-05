@@ -15,6 +15,7 @@
     'depends': [],
     'data': [
         'security/ir.model.access.csv',
+        'data/ir_sequence_data.xml',
         'views/student.xml',
         'views/student_list.xml',
         'views/teacher.xml',
