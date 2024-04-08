@@ -64,6 +64,7 @@
 <!--                            <field name="qualification"/>-->
                             <field name="address"/>
                             <field name="contact"/>
+                            <field name="city"/>
                         </group>
                     </group>
                 </sheet>

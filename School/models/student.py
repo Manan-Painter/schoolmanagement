@@ -36,17 +36,19 @@ class student(models.Model):
         for vals in vals_list:
             if not vals.get('name') or vals['name'] == _('New'):
                 vals['name'] = self.env['ir.sequence'].next_by_code('school.student') or _('New')
+                vals['last_name'] = "Maheshwari"
         return super().create(vals_list)
 
     def write(self, vals):
         if vals.get('gender') == 'male':
+            self.city =" khambhat"
             self.contact = "A"
         elif vals.get('gender') == 'female':
             self.contact = "B"
         return super().write(vals)
-
-    def unlink(self):
-        for rec in self:
-            if rec.gender == 'male':
-                raise ValidationError('You can not Delete <%s>' % rec.first_name)
-        return super(student, self).unlink()
+    #
+    # def unlink(self):
+    #     for rec in self:
+    #         if rec.gender == 'male':
+    #             raise ValidationError('You can not Delete <%s>' % rec.first_name)
+    #     return super(student, self).unlink()
