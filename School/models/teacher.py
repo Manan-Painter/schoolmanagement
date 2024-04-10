@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models,api
 
 class teacher(models.Model):
     _name = "teacher.student"
@@ -19,3 +19,18 @@ class teacher(models.Model):
     peon_ids = fields.Many2many("peon.student",string="peon")
     def new_method(self):
         pass
+
+    @api.model
+    def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):
+        print ("======ar===",args,name)
+        args = list(args or [])
+        if name:
+            args += ['|', ('name', operator, name), ('qualification', operator, name)]
+        return self._search(args, limit=limit, access_rights_uid=name_get_uid)
+
+    def name_get(self):
+        result = []
+        for rec in self:
+            result.append((rec.id, '%s(%s) -- %s' % (rec.first_name, rec.last_name, "Test")))
+            print ("rr",result)
+        return result

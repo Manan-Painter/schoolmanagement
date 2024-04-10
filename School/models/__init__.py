@@ -22,3 +22,4 @@ from . import exam_attendance
 from . import result
 from . import assignment
 from . import submission
+from . import res_partner

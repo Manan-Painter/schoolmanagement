@@ -19,6 +19,7 @@ class student(models.Model):
     partner_id = fields.Many2one('res.partner', string='partner')
     qualification = fields.Char(string="Teacher Qualification", related='teacher_id.qualification')
     student_ids = fields.One2many('bus.fees', 'student_id', string='Students')
+    partner_id = fields.Many2one("res.partner", string="Partner")
 
     # @api.model_create_multi
     # def create(self, vals_list):
