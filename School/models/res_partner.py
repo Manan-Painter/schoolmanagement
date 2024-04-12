@@ -7,5 +7,5 @@ class Partner(models.Model):
     def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):
         args = list(args or [])
         if name:
-            args += ['|', ('name', operator, name), ('state_id.code', operator, name)]
+            args += ['|','|','|', ('name', operator, name), ('state_id.code', operator, name),('mobile', operator, name),('phone', operator, name)]
         return self._search(args, limit=limit, access_rights_uid=name_get_uid)

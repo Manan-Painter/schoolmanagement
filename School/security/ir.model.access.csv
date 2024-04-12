@@ -20,3 +20,4 @@ School.access_exam_attendance,access_exam_attendance,School.model_exam_attendanc
 School.access_result_student,access_result_student,School.model_result_student,base.group_user,1,1,1,1
 School.access_assignment_student,access_assignment_student,School.model_assignment_student,base.group_user,1,1,1,1
 School.access_home_work_student,access_home_work_student,School.model_home_work_student,base.group_user,1,1,1,1
+School.access_base_model,access_base_model,School.model_base_model,base.group_user,1,1,1,1

@@ -29,8 +29,11 @@ class teacher(models.Model):
         return self._search(args, limit=limit, access_rights_uid=name_get_uid)
 
     def name_get(self):
+        print("aaaaaaaaa",self)
         result = []
+        print("bbbbbbb",result)
         for rec in self:
+            print("cccccc",rec)
             result.append((rec.id, '%s(%s) -- %s' % (rec.first_name, rec.last_name, "Test")))
-            print ("rr",result)
+            print ("dddddddd",result)
         return result

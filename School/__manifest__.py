@@ -38,6 +38,7 @@
         'views/assignment.xml',
         'views/submission.xml',
         'views/menu.xml',
+        'views/base_class.xml',
     ],
     'installable': True,
     'application': True,
