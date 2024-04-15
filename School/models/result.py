@@ -15,7 +15,7 @@ class exam_attendance(models.Model):
 
 
 class BaseClass(models.Model):
-    _name = "base.model"
+    _name = " "
     _description = "Base Class"
 
     name = fields.Char("Base Name")
