@@ -1,4 +1,5 @@
 from odoo import fields, models, api, _
+from datetime import date
 from odoo.exceptions import ValidationError
 
 class student(models.Model):
@@ -10,7 +11,7 @@ class student(models.Model):
     last_name = fields.Char(string="Last Name")
     standard = fields.Char(string="Standard")
     date_of_birth = fields.Date(string="Date Of Birth")
-    student_age = fields.Char(string="Student Age", default="10")
+    age = fields.Char(string="Student Age", compute='_compute_age',default="10")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string="Gender", default="female")
     address = fields.Char(string="Address")
     city = fields.Char(string="City")
@@ -18,9 +19,36 @@ class student(models.Model):
     teacher_id = fields.Many2one('teacher.student', string='Teacher')
     partner_id = fields.Many2one('res.partner', string='partner')
     qualification = fields.Char(string="Teacher Qualification", related='teacher_id.qualification')
-    student_ids = fields.One2many('bus.fees', 'student_id', string='Students')
+    admission_id = fields.Many2one('admission.student', string='Admission')
+    # student_ids = fields.One2many('bus.fees', 'student_id', string='Students')
     partner_id = fields.Many2one("res.partner", string="Partner")
 
+    company_id = fields.Many2one("res.company",  default=lambda self: self.env.company)
+    currency_id = fields.Many2one(
+        related='company_id.currency_id',
+        store=True, precompute=True, ondelete="restrict")
+    stud_phone = fields.Char(related="company_id.phone")
+    registration_fees = fields.Float()
+    tution_fees = fields.Float()
+    total_fees = fields.Monetary("Total Fees", store=True, compute="_compute_total_fees")
+
+    donation_fees = fields.Float("Donation")
+
+    @api.depends("registration_fees", "tution_fees")
+    def _compute_total_fees(self):
+        for rec in self:
+            print ("<<<<<<<<<<<<")
+            rec.total_fees = rec.registration_fees + rec.tution_fees
+
+
+    def _compute_age(self):
+        for findage in self:
+            today = date.today()
+            if findage.date_of_birth:
+                findage.age = today.year - findage.dob.year
+            else:
+                findage.age = 0
+    #
     # @api.model_create_multi
     # def create(self, vals_list):
     #     res = super(student, self).create(vals_list)
@@ -42,7 +70,7 @@ class student(models.Model):
 
     def write(self, vals):
         if vals.get('gender') == 'male':
-            self.city =" khambhat"
+            self.city ="khambhat"
             self.contact = "A"
         elif vals.get('gender') == 'female':
             self.contact = "B"

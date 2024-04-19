@@ -40,6 +40,8 @@
                             <field name="name"/>
                             <field name="present"/>
                             <field name="absent"/>
+                                                            <field name = "remark"/>
+
                         </group>
                         <group>
 <!--                            <field name="remark"/>-->

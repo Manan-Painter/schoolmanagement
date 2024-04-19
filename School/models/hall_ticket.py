@@ -11,4 +11,4 @@ class hall_ticket(models.Model):
     standard = fields.Integer(string="Standard")
     roll_no = fields.Integer(string="Roll No")
     date = fields.Date(string="Date")
-    student_ids = fields.Many2many("school.student", string="Student Id")
+    # student_ids = fields.Many2many("school.student", string="Student Id")

@@ -34,6 +34,9 @@
                 <field name="name"/>
                 <field name="first_name"/>
                 <field name="last_name"/>
+                <field name="registration_fees"  sum="ABC"/>
+                <field name="tution_fees"  sum="MMM"/>
+                <field name="total_fees" sum="Total" widget="monetary"/>
             </tree>
         </field>
     </record>
@@ -55,7 +58,7 @@
                             <field name="first_name"/>
                             <field name="last_name"/>
                             <field name="standard"/>
-                            <field name="student_age"/>
+                            <field name="age"/>
 <!--                            <field name="partner_id"/>-->
                         </group>
                         <group>
@@ -65,9 +68,27 @@
                             <field name="address"/>
                             <field name="contact"/>
                             <field name="city"/>
+                            <field name="admission_id"/>
                             <field name="partner_id"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Fees">
+                            <group>
+                                <group>
+                                    <field name="registration_fees"/>
+                                    <field name="tution_fees"/>
+                                </group>
+                                <group>
+                                    <field name="currency_id"/>
+                                    <field name="company_id"/>
+                                    <field name="stud_phone"/>
+                                    <field name="total_fees"/>
+                                    <field name="donation_fees" widget="monetary"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

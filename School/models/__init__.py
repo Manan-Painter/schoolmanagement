@@ -10,16 +10,16 @@ from . import attendance_student
 from . import attendance_teacher
 from . import attendance_guardian
 from . import attendance_peon
-from . import student_time_table
-from . import teacher_time_table
-from . import semester_fees
-from . import exam_fees
-from . import bus_fees
-from . import books_fees
-from . import exam_form
-from . import hall_ticket
-from . import exam_attendance
+# from . import student_time_table
+# from . import teacher_time_table
+# from . import semester_fees
+# from . import exam_fees
+# from . import bus_fees
+# from . import books_fees
+# from . import exam_form
+# from . import hall_ticket
+# from . import exam_attendance
 from . import result
-from . import assignment
-from . import submission
+# from . import assignment
+# from . import submission
 from . import res_partner

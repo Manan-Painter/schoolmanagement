@@ -12,3 +12,4 @@ class attendance_peon(models.Model):
     end_time = fields.Datetime(string="End Time")
     peon_id = fields.Many2one('peon.student', 'Peon')
 
+    first_name = fields.Char(string="First Name", related='peon_id.first_name')

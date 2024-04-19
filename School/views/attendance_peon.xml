@@ -39,6 +39,7 @@
                             <field name="name"/>
                             <field name="present"/>
                             <field name="absent"/>
+                            <field name="first_name"/>
                         </group>
                         <group>
                             <field name="remark"/>

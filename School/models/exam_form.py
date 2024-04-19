@@ -11,5 +11,5 @@ class exam_form(models.Model):
     standard = fields.Integer(string="Standard")
     roll_no = fields.Integer(string="Roll No")
     date = fields.Date(string="Date")
-    submission_id = fields.Many2one('home.work.student', 'Submission')
+    # submission_id = fields.Many2one('home.work.student', 'Submission')
     experience = fields.Char(string="Experiance",related='submission_id.experience')

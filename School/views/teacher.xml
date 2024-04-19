@@ -67,6 +67,11 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                      <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
                     <group>
                         <group>
                             <field name="first_name"/>
@@ -77,11 +82,13 @@
                             <field name="peon_ids" widget="many2many_tags"/>
                         </group>
                         <group>
+                            <field name="age"/>
                             <field name="gender"/>
                             <field name="address"/>
                             <field name="city"/>
                             <field name="contact"/>
                             <field name="attendance_id"/>
+                            <field name="remark"/>
 <!--                            <field name="teacher_ids"/>-->
                         </group>
                     </group>

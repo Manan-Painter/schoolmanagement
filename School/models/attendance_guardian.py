@@ -10,3 +10,5 @@ class attendance_guardian(models.Model):
     remark = fields.Char(string="Remark")
     start_time = fields.Datetime(string="Start Time")
     end_time = fields.Datetime(string="End Time")
+    guardian_id = fields.Many2one('guardian.student', 'Guardian')
+    first_name = fields.Char(string="Guardian Name", related='guardian_id.first_name')
