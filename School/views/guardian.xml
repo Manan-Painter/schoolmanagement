@@ -57,6 +57,11 @@
                             <field name="guardian_ids"/>
                         </group>
                     </group>
+                     <notebook>
+                        <page string="Guardian IDS">
+                                    <field name="guardian_ids"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

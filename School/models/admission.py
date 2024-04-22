@@ -7,7 +7,7 @@ class admission(models.Model):
     _description = "student details"
 
 
-    name = fields.Char('Name', copy=False, readonly=True, default= lambda x: _('New'))
+    name = fields.Char('Name', copy=False, readonly=True, default= lambda x: _('Admission Form'))
     last_name = fields.Char(string="Last Name")
     father_name = fields.Char(string="Father Name")
     mother_name = fields.Char(string="Mother Name")

@@ -6,7 +6,7 @@ class student(models.Model):
     _name = "school.student"
     _description = "student details"
 
-    name = fields.Char('Reference', copy=False, readonly=True, default=lambda x: _('New'))
+    name = fields.Char('Reference', copy=False, readonly=True, default=lambda x: _('Student List'))
     first_name = fields.Char(string="First Name")
     last_name = fields.Char(string="Last Name")
     standard = fields.Char(string="Standard")
@@ -81,3 +81,6 @@ class student(models.Model):
     #         if rec.gender == 'male':
     #             raise ValidationError('You can not Delete <%s>' % rec.first_name)
     #     return super(student, self).unlink()
+
+    def action_test(self):
+        print("button clicked")

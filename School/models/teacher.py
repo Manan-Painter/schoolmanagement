@@ -6,7 +6,7 @@ class teacher(models.Model):
     _name = "teacher.student"
     _description = "student details"
 
-    name = fields.Char(string="Name",readonly=True, default= lambda x: _('New'))
+    name = fields.Char(string="Name",readonly=True, default= lambda x: _('Teachers(Staff)'))
     first_name = fields.Char(string="First Name")
     last_name = fields.Char(string="Last Name")
     dob = fields.Date(string="DOB")

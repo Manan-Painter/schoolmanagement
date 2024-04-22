@@ -50,20 +50,32 @@
                             <field name="name"/>
                             <field name="last_name"/>
                             <field name="father_name"/>
+                        </group>
+                        <group>
                             <field name="mother_name"/>
                             <field name="age"/>
                             <field name="city"/>
                         </group>
-                        <group>
-                            <field name="last_standard"/>
-                            <field name="current_standard"/>
-                            <field name="date_of_birth"/>
-                            <field name="address"/>
-                            <field name="gender"/>
-                            <field name="contact"/>
-                            <field name="student_ids"/>
-                        </group>
                     </group>
+                         <notebook>
+                        <page string="Student IDS">
+                                    <field name="student_ids"/>
+                        </page>
+                             <page string="Personal Information">
+                            <group>
+                                <group>
+                                    <field name="last_standard"/>
+                                    <field name="current_standard"/>
+                                    <field name="date_of_birth"/>
+                                </group>
+                                <group>
+                                    <field name="address"/>
+                                    <field name="gender"/>
+                                    <field name="contact"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

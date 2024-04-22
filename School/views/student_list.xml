@@ -59,29 +59,38 @@
                             <field name="last_name"/>
                             <field name="standard"/>
                             <field name="age"/>
-<!--                            <field name="partner_id"/>-->
                         </group>
                         <group>
                             <field name="gender"/>
                             <field name="teacher_id"/>
-<!--                            <field name="qualification"/>-->
-                            <field name="address"/>
-                            <field name="contact"/>
-                            <field name="city"/>
-                            <field name="admission_id"/>
-                            <field name="partner_id"/>
+                            <field name="qualification"/>
+                            <button name="action_test" string="Save" type="object"/>
+                            <button name="%(School.action_school_list)d" string="Action Save" type="action" class="oe_highlight"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Fees">
+                        <page string="Personal Information">
+                            <group>
+                                <group>
+                                    <field name="address"/>
+                                    <field name="contact"/>
+                                    <field name="city"/>
+                                </group>
+                                <group>
+                                    <field name="admission_id"/>
+                                    <field name="partner_id"/>
+                                </group>
+                            </group>
+                        </page>
+                         <page string="Fees">
                             <group>
                                 <group>
                                     <field name="registration_fees"/>
                                     <field name="tution_fees"/>
-                                </group>
-                                <group>
                                     <field name="currency_id"/>
                                     <field name="company_id"/>
+                                </group>
+                                <group>
                                     <field name="stud_phone"/>
                                     <field name="total_fees"/>
                                     <field name="donation_fees" widget="monetary"/>
@@ -94,10 +103,34 @@
         </field>
     </record>
 
+     <record id="view_school_student_pivot" model="ir.ui.view">
+        <field name="name">school.stident.pivot</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <pivot string="School" sample="1">
+                <field name="partner_id" type="row"/>
+                 <field name="company_id" type="row"/>
+                <field name="registration_fees" type="col"/>
+                <field name="total_fees" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_school_student_graph" model="ir.ui.view">
+        <field name="name">school.stident.graph</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <graph string="SSchool" sample="1">
+                <field name="partner_id"/>
+                <field name="total_fees" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="action_school_list">
         <field name="name">School List</field>
         <field name="res_model">school.student</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

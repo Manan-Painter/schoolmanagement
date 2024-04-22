@@ -75,20 +75,13 @@
                     <group>
                         <group>
                             <field name="first_name"/>
-                            <field name="last_name"/>
-                            <field name="dob"/>
                             <field name="qualification"/>
-                            <field name="name"/>
-                            <field name="peon_ids" widget="many2many_tags"/>
+<!--                            <field name="name"/>-->
+                            <!--                            <field name="peon_ids" widget="many2many_tags"/>-->
                         </group>
                         <group>
-                            <field name="age"/>
-                            <field name="gender"/>
-                            <field name="address"/>
-                            <field name="city"/>
-                            <field name="contact"/>
-                            <field name="attendance_id"/>
-                            <field name="remark"/>
+                            <field name="last_name"/>
+                            <field name="dob"/>
 <!--                            <field name="teacher_ids"/>-->
                         </group>
                     </group>
@@ -102,6 +95,20 @@
                                     <field name="contact"/>
                                 </tree>
                             </field>
+                        </page>
+                        <page string="Teacher Information">
+                            <group>
+                                <group>
+                                    <field name="address"/>
+                                    <field name="contact"/>
+                                    <field name="city"/>
+                                </group>
+                                <group>
+                                    <field name="age"/>
+                                    <field name="attendance_id"/>
+                                    <field name="remark"/>
+                                </group>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>

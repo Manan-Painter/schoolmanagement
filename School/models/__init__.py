@@ -23,3 +23,4 @@ from . import result
 # from . import assignment
 # from . import submission
 from . import res_partner
+from . import sale_order

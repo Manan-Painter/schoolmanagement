@@ -12,7 +12,7 @@
     This is School Managemnt
     """,
     'category': 'School',
-    'depends': [],
+    'depends': ["sale"],
     'data': [
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
@@ -43,6 +43,7 @@
         # 'views/submission.xml',
         'views/menu.xml',
         'views/base_class.xml',
+        "views/sale_order_view.xml",
     ],
     'installable': True,
     'application': True,

@@ -54,11 +54,21 @@
                             <field name="address"/>
                             <field name="city"/>
                             <field name="contact"/>
-                            <field name="name"/>
-                            <field name="peon_ids"/>
-                            <field name="address"/>
+<!--                            <field name="name"/>-->
+<!--                            <field name="peon_ids"/>-->
+<!--                            <field name="address"/>-->
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Peon IDS">
+                                <field name="peon_ids">
+                                    <tree>
+                                    <field name="name"/>
+                                    <field name="present"/>
+                                    </tree>
+                                </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
