@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-      <record id="view_hotel_customer_search" model="ir.ui.view">
+    <record model="ir.ui.view" id="school_student_kanban">
+        <field name="name">school.student.Kanban</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <kanban class="o_modules_kanban">
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="standard"/>
+                <field name="age"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_module_vignette">
+                            <div class="oe_kanban_content flex-grow-1">
+                                <div class="o_kanban_record_title oe_kanban_details">
+                                    <strong>
+                                        <field name="first_name"/>
+                                    </strong>
+                                </div>
+                                <div class="o_kanban_record_subtitle">
+                                    <field name="last_name"/>
+                                    <field name="standard"/>
+                                </div>
+                                <div>
+                                    <field name="standard"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_hotel_customer_search" model="ir.ui.view">
         <field name="model">school.student</field>
         <field name="arch" type="xml">
             <search>
@@ -12,20 +45,20 @@
         </field>
     </record>
 
-<!--    <record id="view_hotel_customer_tree" model="ir.ui.view">-->
-<!--        <field name="name">view.hotel.customer_tree</field>-->
-<!--        <field name="model">school.student</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <tree>-->
-<!--                <field name="first_name"/>-->
-<!--                <field name="last_name"/>-->
-<!--                <field name="standard"/>-->
-<!--                <field name="gender"/>-->
-<!--                <field name="address"/>-->
-<!--                <field name="contact"/>-->
-<!--            </tree>-->
-<!--        </field>-->
-<!--    </record>-->
+    <!--    <record id="view_hotel_customer_tree" model="ir.ui.view">-->
+    <!--        <field name="name">view.hotel.customer_tree</field>-->
+    <!--        <field name="model">school.student</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <tree>-->
+    <!--                <field name="first_name"/>-->
+    <!--                <field name="last_name"/>-->
+    <!--                <field name="standard"/>-->
+    <!--                <field name="gender"/>-->
+    <!--                <field name="address"/>-->
+    <!--                <field name="contact"/>-->
+    <!--            </tree>-->
+    <!--        </field>-->
+    <!--    </record>-->
     <record id="student_tree" model="ir.ui.view">
         <field name="name">student.tree</field>
         <field name="model">school.student</field>
@@ -34,8 +67,8 @@
                 <field name="name"/>
                 <field name="first_name"/>
                 <field name="last_name"/>
-                <field name="registration_fees"  sum="ABC"/>
-                <field name="tution_fees"  sum="MMM"/>
+                <field name="registration_fees" sum="ABC"/>
+                <field name="tution_fees" sum="MMM"/>
                 <field name="total_fees" sum="Total" widget="monetary"/>
             </tree>
         </field>
@@ -49,10 +82,10 @@
             <form>
                 <sheet>
                     <div class="oe_title">
-                    <h1>
-                        <field name="name" readonly="1"/>
-                    </h1>
-                </div>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
                     <group>
                         <group>
                             <field name="first_name"/>
@@ -64,8 +97,9 @@
                             <field name="gender"/>
                             <field name="teacher_id"/>
                             <field name="qualification"/>
-                            <button name="action_test" string="Save" type="object"/>
-                            <button name="%(School.action_school_list)d" string="Action Save" type="action" class="oe_highlight"/>
+                            <button name="action_test" string="Save" type="object" class="oe_highlight"/>
+                            <button name="%(School.action_school_list)d" string="Action Save" type="action"
+                                    class="oe_highlight"/>
                         </group>
                     </group>
                     <notebook>
@@ -82,7 +116,7 @@
                                 </group>
                             </group>
                         </page>
-                         <page string="Fees">
+                        <page string="Fees">
                             <group>
                                 <group>
                                     <field name="registration_fees"/>
@@ -103,13 +137,13 @@
         </field>
     </record>
 
-     <record id="view_school_student_pivot" model="ir.ui.view">
+    <record id="view_school_student_pivot" model="ir.ui.view">
         <field name="name">school.stident.pivot</field>
         <field name="model">school.student</field>
         <field name="arch" type="xml">
             <pivot string="School" sample="1">
                 <field name="partner_id" type="row"/>
-                 <field name="company_id" type="row"/>
+                <field name="company_id" type="row"/>
                 <field name="registration_fees" type="col"/>
                 <field name="total_fees" type="measure"/>
             </pivot>
@@ -130,7 +164,7 @@
     <record model="ir.actions.act_window" id="action_school_list">
         <field name="name">School List</field>
         <field name="res_model">school.student</field>
-        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="view_mode">tree,form,pivot,graph,kanban</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
