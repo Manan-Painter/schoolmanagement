@@ -90,7 +90,19 @@
                     </group>
                          <notebook>
                         <page string="Student IDS">
-                                    <field name="student_ids"/>
+                            <field name="student_ids">
+                                <form string="School">
+                                    <group>
+                                        <group>
+                                            <field name="first_name"/>
+                                            <field name="last_name"/>
+                                        </group>
+                                        <group>
+                                            <field name="gender"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
                         </page>
                              <page string="Personal Information">
                             <group>

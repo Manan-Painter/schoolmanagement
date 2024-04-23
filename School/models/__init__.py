@@ -24,3 +24,6 @@ from . import result
 # from . import submission
 from . import res_partner
 from . import sale_order
+from . import school_book
+from . import res_partener
+from . import product

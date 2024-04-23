@@ -12,7 +12,7 @@
     This is School Managemnt
     """,
     'category': 'School',
-    'depends': ["sale"],
+    'depends': ["sale","mail"],
     'data': [
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
@@ -29,6 +29,7 @@
         'views/attendance_teacher.xml',
         'views/attendance_guardian.xml',
         'views/attendance_peon.xml',
+        'views/school_book.xml',
         # 'views/student_time_table.xml',
         # 'views/teacher_time_table.xml',
         # 'views/semester_fees.xml',
@@ -44,6 +45,8 @@
         'views/menu.xml',
         'views/base_class.xml',
         "views/sale_order_view.xml",
+        "views/res_partener.xml",
+        "views/product.xml",
     ],
     'installable': True,
     'application': True,

@@ -85,86 +85,86 @@
             action="action_peon_attendance_list"
             sequence="0"/>
 
-<!--    <menuitem-->
-<!--            id="menu_time_table_root"-->
-<!--            name="Time Table"-->
-<!--            parent="menu_school_root"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_time_table_root"-->
+    <!--            name="Time Table"-->
+    <!--            parent="menu_school_root"-->
+    <!--            sequence="0"/>-->
 
-<!--    <menuitem-->
-<!--            id="menu_student_time_table_root"-->
-<!--            name="Student"-->
-<!--            parent="menu_time_table_root"-->
-<!--            action="action_student_time_table_list"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_student_time_table_root"-->
+    <!--            name="Student"-->
+    <!--            parent="menu_time_table_root"-->
+    <!--            action="action_student_time_table_list"-->
+    <!--            sequence="0"/>-->
 
-<!--    <menuitem-->
-<!--            id="menu_teacher_time_table_root"-->
-<!--            name="Teacher"-->
-<!--            parent="menu_time_table_root"-->
-<!--            action="action_teacher_time_table_list"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_teacher_time_table_root"-->
+    <!--            name="Teacher"-->
+    <!--            parent="menu_time_table_root"-->
+    <!--            action="action_teacher_time_table_list"-->
+    <!--            sequence="0"/>-->
 
-<!--    <menuitem-->
-<!--            id="menu_payment_root"-->
-<!--            name="Payments"-->
-<!--            parent="menu_school_root"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_payment_root"-->
+    <!--            name="Payments"-->
+    <!--            parent="menu_school_root"-->
+    <!--            sequence="0"/>-->
 
-<!--    <menuitem-->
-<!--            id="menu_semester_fees_root"-->
-<!--            name="Semester Fees"-->
-<!--            parent="menu_payment_root"-->
-<!--            action="action_semester_fees_list"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_semester_fees_root"-->
+    <!--            name="Semester Fees"-->
+    <!--            parent="menu_payment_root"-->
+    <!--            action="action_semester_fees_list"-->
+    <!--            sequence="0"/>-->
 
-<!--    <menuitem-->
-<!--            id="menu_exam_fees_root"-->
-<!--            name="Exam Fees"-->
-<!--            parent="menu_payment_root"-->
-<!--            action="action_exam_fees_list"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_exam_fees_root"-->
+    <!--            name="Exam Fees"-->
+    <!--            parent="menu_payment_root"-->
+    <!--            action="action_exam_fees_list"-->
+    <!--            sequence="0"/>-->
 
-<!--    <menuitem-->
-<!--            id="menu_bus_fees_root"-->
-<!--            name="Bus Fees"-->
-<!--            parent="menu_payment_root"-->
-<!--            action="action_bus_fees_list"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_bus_fees_root"-->
+    <!--            name="Bus Fees"-->
+    <!--            parent="menu_payment_root"-->
+    <!--            action="action_bus_fees_list"-->
+    <!--            sequence="0"/>-->
 
-<!--    <menuitem-->
-<!--            id="menu_books_fees_root"-->
-<!--            name="Books Fees"-->
-<!--            parent="menu_payment_root"-->
-<!--            action="action_books_fees_list"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_books_fees_root"-->
+    <!--            name="Books Fees"-->
+    <!--            parent="menu_payment_root"-->
+    <!--            action="action_books_fees_list"-->
+    <!--            sequence="0"/>-->
 
-<!--    <menuitem-->
-<!--            id="menu_exam_root"-->
-<!--            name="Exams"-->
-<!--            parent="menu_school_root"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_exam_root"-->
+    <!--            name="Exams"-->
+    <!--            parent="menu_school_root"-->
+    <!--            sequence="0"/>-->
 
-<!--    <menuitem-->
-<!--            id="menu_exam_from_root"-->
-<!--            name="Exam Form"-->
-<!--            parent="menu_exam_root"-->
-<!--            action="action_exam_form_list"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_exam_from_root"-->
+    <!--            name="Exam Form"-->
+    <!--            parent="menu_exam_root"-->
+    <!--            action="action_exam_form_list"-->
+    <!--            sequence="0"/>-->
 
-<!--    <menuitem-->
-<!--            id="menu_hall_ticket_root"-->
-<!--            name="Hall Ticket"-->
-<!--            parent="menu_exam_root"-->
-<!--            action="action_hall_ticket_list"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_hall_ticket_root"-->
+    <!--            name="Hall Ticket"-->
+    <!--            parent="menu_exam_root"-->
+    <!--            action="action_hall_ticket_list"-->
+    <!--            sequence="0"/>-->
 
-<!--    <menuitem-->
-<!--            id="menu_exam_attendance_root"-->
-<!--            name="Exam Attendance"-->
-<!--            parent="menu_exam_root"-->
-<!--            action="action_exam_attendance_list"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_exam_attendance_root"-->
+    <!--            name="Exam Attendance"-->
+    <!--            parent="menu_exam_root"-->
+    <!--            action="action_exam_attendance_list"-->
+    <!--            sequence="0"/>-->
 
     <menuitem
             id="menu_result_root"
@@ -172,24 +172,38 @@
             action="action_result_list"
             sequence="0"/>
 
-<!--    <menuitem-->
-<!--            id="menu_submission_root"-->
-<!--            name="Submission"-->
-<!--            parent="menu_school_root"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_submission_root"-->
+    <!--            name="Submission"-->
+    <!--            parent="menu_school_root"-->
+    <!--            sequence="0"/>-->
 
-<!--    <menuitem-->
-<!--            id="menu_assignment_root"-->
-<!--            name="Assignment"-->
-<!--            parent="menu_submission_root"-->
-<!--            action="action_assignment_list"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_assignment_root"-->
+    <!--            name="Assignment"-->
+    <!--            parent="menu_submission_root"-->
+    <!--            action="action_assignment_list"-->
+    <!--            sequence="0"/>-->
 
-<!--    <menuitem-->
-<!--            id="menu_home_work_root"-->
-<!--            name="Home Work"-->
-<!--            parent="menu_submission_root"-->
-<!--            action="action_home_work_list"-->
-<!--            sequence="0"/>-->
+    <!--    <menuitem-->
+    <!--            id="menu_home_work_root"-->
+    <!--            name="Home Work"-->
+    <!--            parent="menu_submission_root"-->
+    <!--            action="action_home_work_list"-->
+    <!--            sequence="0"/>-->
+
+    <menuitem
+            id="menu_books_root"
+            name="Books"
+            parent="menu_school_root"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_school_books_root"
+            name="Books"
+            parent="menu_books_root"
+            action="action_school_books_list"
+            sequence="0"/>
+
 
 </odoo>
