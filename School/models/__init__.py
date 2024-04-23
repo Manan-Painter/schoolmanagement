@@ -27,3 +27,4 @@ from . import sale_order
 from . import school_book
 from . import res_partener
 from . import product
+from . import avverage_grade

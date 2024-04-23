@@ -1,7 +1,6 @@
 from odoo import fields, models,api
 from datetime import date
 
-
 class books(models.Model):
     _name = "books.books"
     _description = "student details"

@@ -205,5 +205,16 @@
             action="action_school_books_list"
             sequence="0"/>
 
+    <menuitem
+            id="menu_grade_root"
+            name="Grade"
+            parent="menu_school_root"
+            sequence="0"/>
 
+    <menuitem
+            id="menu_average_grade_root"
+            name="Average Grade"
+            parent="menu_grade_root"
+            action="action_average_garde_list"
+            sequence="0"/>
 </odoo>

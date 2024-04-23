@@ -6,12 +6,12 @@ class student(models.Model):
     _name = "school.student"
     _description = "student details"
 
-    name = fields.Char('Reference', copy=False, readonly=True, default=lambda x: _('Student List'))
+    name = fields.Char('Name')
     first_name = fields.Char(string="First Name")
     last_name = fields.Char(string="Last Name")
     standard = fields.Char(string="Standard")
     date_of_birth = fields.Date(string="Date Of Birth")
-    age = fields.Char(string="Student Age", compute='_compute_age',default="10")
+    age = fields.Char(string="Student Age")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string="Gender", default="female")
     address = fields.Char(string="Address")
     city = fields.Char(string="City")
@@ -20,6 +20,7 @@ class student(models.Model):
     partner_id = fields.Many2one('res.partner', string='partner')
     qualification = fields.Char(string="Teacher Qualification", related='teacher_id.qualification')
     admission_id = fields.Many2one('admission.student', string='Admission')
+    # average_ids = fields.One2many('average.grade','student_id',string="Average Grade")
     # student_ids = fields.One2many('bus.fees', 'student_id', string='Students')
     partner_id = fields.Many2one("res.partner", string="Partner")
 
@@ -41,13 +42,13 @@ class student(models.Model):
             rec.total_fees = rec.registration_fees + rec.tution_fees
 
 
-    def _compute_age(self):
-        for findage in self:
-            today = date.today()
-            if findage.date_of_birth:
-                findage.age = today.year - findage.dob.year
-            else:
-                findage.age = 0
+    # def _compute_age(self):
+    #     for findage in self:
+    #         today = date.today()
+    #         if findage.date_of_birth:
+    #             findage.age = today.year - findage.date_of_birth.year
+    #         else:
+    #             findage.age = 0
     #
     # @api.model_create_multi
     # def create(self, vals_list):
@@ -60,27 +61,42 @@ class student(models.Model):
     #     self.env["admission.student"].create(addmission_student)
     #     return res
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            if not vals.get('name') or vals['name'] == _('New'):
-                vals['name'] = self.env['ir.sequence'].next_by_code('school.student') or _('New')
-                vals['last_name'] = "Maheshwari"
-        return super().create(vals_list)
+    # @api.model_create_multi
+    # def create(self, vals_list):
+    #     for vals in vals_list:
+    #         if not vals.get('name') or vals['name'] == _('New'):
+    #             vals['name'] = self.env['ir.sequence'].next_by_code('school.student') or _('New')
+    #             vals['last_name'] = "Maheshwari"
+    #     return super().create(vals_list)
 
-    def write(self, vals):
-        if vals.get('gender') == 'male':
-            self.city ="khambhat"
-            self.contact = "A"
-        elif vals.get('gender') == 'female':
-            self.contact = "B"
-        return super().write(vals)
-    #
+    # @api.model_create_multi
+    # def create(self, vals_list):
+    #     for vals in vals_list:
+    #         if not vals.get('name') or vals['name'] == _('New'):
+    #             vals['name'] = self.first_name
+    #     return super().create(vals_list)
+
+    # def write(self, vals):
+    #     if vals.get('gender') == 'male':
+    #         self.city ="khambhat"
+    #         self.contact = "A"
+    #     elif vals.get('gender') == 'female':
+    #         self.contact = "B"
+    #     return super().write(vals)
+    # #
     # def unlink(self):
     #     for rec in self:
     #         if rec.gender == 'male':
     #             raise ValidationError('You can not Delete <%s>' % rec.first_name)
     #     return super(student, self).unlink()
+
+    @api.model
+    def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):
+        print("======ar===", args, name)
+        args = list(args or [])
+        if name:
+            args += ['|', ('name', operator, name), ('first_name', operator, name)]
+        return self._search(args, limit=limit, access_rights_uid=name_get_uid)
 
     def action_test(self):
         print("button clicked")

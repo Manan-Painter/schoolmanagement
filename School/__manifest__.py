@@ -47,6 +47,7 @@
         "views/sale_order_view.xml",
         "views/res_partener.xml",
         "views/product.xml",
+        "views/average_grade.xml",
     ],
     'installable': True,
     'application': True,
