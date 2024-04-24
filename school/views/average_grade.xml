@@ -29,6 +29,7 @@
                             <field name="hindi"/>
                             <field name="gujarati"/>
                             <field name="maths"/>
+                            <field name="result"/>
                         </group>
                     </group>
                 </sheet>

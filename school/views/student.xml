@@ -101,6 +101,18 @@
                         </group>
                     </group>
                     <notebook>
+                        <page string="Grade">
+                            <field name="grade_ids">
+                                <tree>
+                                    <field name="science"/>
+                                    <field name="chemistry"/>
+                                    <field name="hindi"/>
+                                    <field name="gujarati"/>
+                                    <field name="maths"/>
+<!--                                    <field name="result"/>-->
+                                </tree>
+                            </field>
+                        </page>
                         <page string="Personal Information">
                             <group>
                                 <group>
@@ -128,17 +140,6 @@
                                     <field name="donation_fees" widget="monetary"/>
                                 </group>
                             </group>
-                        </page>
-                        <page string="Grade">
-                            <field name="grade_ids">
-                                <tree>
-                                    <field name="science"/>
-                                    <field name="chemistry"/>
-                                    <field name="hindi"/>
-                                    <field name="gujarati"/>
-                                    <field name="maths"/>
-                                </tree>
-                            </field>
                         </page>
                     </notebook>
                 </sheet>

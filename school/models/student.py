@@ -36,6 +36,7 @@ class student(models.Model):
     donation_fees = fields.Float("Donation")
     grade_ids = fields.One2many('average.grade','student_id',string="Grade")
 
+
     @api.depends("registration_fees", "tution_fees")
     def _compute_total_fees(self):
         for rec in self:

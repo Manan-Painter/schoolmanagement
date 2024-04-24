@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models ,api,_
 
 class average_grade(models.Model):
     _name = "average.grade"
@@ -12,3 +12,9 @@ class average_grade(models.Model):
     gujarati = fields.Integer(string="Gujarati")
 
 
+    result = fields.Integer(string="Result", compute="_compute_result")
+
+    @api.depends("maths", "science","chemistry","hindi","gujarati")
+    def _compute_result(self):
+        for rec in self:
+            rec.result = (rec.maths + rec.science + rec.chemistry + rec.hindi + rec.gujarati)/5
