@@ -7,7 +7,7 @@ class student(models.Model):
     _description = "student details"
 
     name = fields.Char('Name')
-    # first_name = fields.Char(string="First Name")
+    first_name = fields.Char(string="First Name")
     last_name = fields.Char(string="Last Name")
     standard = fields.Char(string="Standard")
     date_of_birth = fields.Date(string="Date Of Birth")
@@ -34,6 +34,7 @@ class student(models.Model):
     total_fees = fields.Monetary("Total Fees", store=True, compute="_compute_total_fees")
 
     donation_fees = fields.Float("Donation")
+    grade_ids = fields.One2many('average.grade','student_id',string="Grade")
 
     @api.depends("registration_fees", "tution_fees")
     def _compute_total_fees(self):

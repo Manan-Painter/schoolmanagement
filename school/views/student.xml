@@ -129,6 +129,17 @@
                                 </group>
                             </group>
                         </page>
+                        <page string="Grade">
+                            <field name="grade_ids">
+                                <tree>
+                                    <field name="science"/>
+                                    <field name="chemistry"/>
+                                    <field name="hindi"/>
+                                    <field name="gujarati"/>
+                                    <field name="maths"/>
+                                </tree>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
