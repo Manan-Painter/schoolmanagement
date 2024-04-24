@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="teacher_student_kanban">
+        <field name="name">teache.student.Kanban</field>
+        <field name="model">teacher.student</field>
+        <field name="arch" type="xml">
+            <kanban class="o_modules_kanban">
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="dob"/>
+                <field name="qualification"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_module_vignette">
+                            <div class="oe_kanban_content flex-grow-1">
+                                    <div class="o_kanban_record_title oe_kanban_details">
+                                        <strong><field name="first_name"/></strong>
+                                    </div>
+                                    <div class="o_kanban_record_subtitle">
+                                            <field name="last_name" />
+                                            <field name="dob"/>
+                                    </div>
+                                    <div>
+                                        <field name="qualification" />
+                                    </div>
+                                </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="view_teacher_student_search" model="ir.ui.view">
+        <field name="name">search.teacher.student</field>
+        <field name="model">teacher.student</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="qualification"/>
+                <field name="gender"/>
+                <field name="attendance_id" filter_domain="[('name','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_hotel_customer_tree" model="ir.ui.view">
+        <field name="model">teacher.student</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="dob"/>
+                <field name="qualification"/>
+                <field name="gender"/>
+                <field name="address"/>
+                <field name="city"/>
+                <field name="contact"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_teacher_student_form" model="ir.ui.view">
+        <field name="name">view.teacher.form</field>
+        <field name="model">teacher.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                      <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="first_name"/>
+                            <field name="qualification"/>
+<!--                            <field name="name"/>-->
+                            <!--                            <field name="peon_ids" widget="many2many_tags"/>-->
+                        </group>
+                        <group>
+                            <field name="last_name"/>
+                            <field name="dob"/>
+<!--                            <field name="teacher_ids"/>-->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Students" name="students">
+                            <field name="student_ids">
+                                <tree>
+                                    <field name="first_name"/>
+                                    <field name="last_name"/>
+                                    <field name="date_of_birth"/>
+                                    <field name="contact"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Teacher Information">
+                            <group>
+                                <group>
+                                    <field name="address"/>
+                                    <field name="contact"/>
+                                    <field name="city"/>
+                                </group>
+                                <group>
+                                    <field name="age"/>
+                                    <field name="attendance_id"/>
+                                    <field name="remark"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_teacher_list">
+        <field name="name">Teacher(Staff)</field>
+        <field name="res_model">teacher.student</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first addmission form
+            </p>
+        </field>
+    </record>
+
+</odoo>
