@@ -6,8 +6,6 @@
         <field name="model">school.student</field>
         <field name="arch" type="xml">
             <kanban class="o_modules_kanban">
-                <field name="first_name"/>
-                <field name="last_name"/>
                 <field name="standard"/>
                 <field name="age"/>
                 <templates>
@@ -16,11 +14,10 @@
                             <div class="oe_kanban_content flex-grow-1">
                                 <div class="o_kanban_record_title oe_kanban_details">
                                     <strong>
-                                        <field name="first_name"/>
+                                        <field name="name"/>
                                     </strong>
                                 </div>
                                 <div class="o_kanban_record_subtitle">
-                                    <field name="last_name"/>
                                     <field name="standard"/>
                                 </div>
                                 <div>
@@ -38,35 +35,22 @@
         <field name="model">school.student</field>
         <field name="arch" type="xml">
             <search>
-                <field name="first_name"/>
-                <field name="last_name"/>
+                <field name="name"/>
                 <field name="gender"/>
             </search>
         </field>
     </record>
 
-    <!--    <record id="view_hotel_customer_tree" model="ir.ui.view">-->
-    <!--        <field name="name">view.hotel.customer_tree</field>-->
-    <!--        <field name="model">school.student</field>-->
-    <!--        <field name="arch" type="xml">-->
-    <!--            <tree>-->
-    <!--                <field name="first_name"/>-->
-    <!--                <field name="last_name"/>-->
-    <!--                <field name="standard"/>-->
-    <!--                <field name="gender"/>-->
-    <!--                <field name="address"/>-->
-    <!--                <field name="contact"/>-->
-    <!--            </tree>-->
-    <!--        </field>-->
-    <!--    </record>-->
     <record id="student_tree" model="ir.ui.view">
         <field name="name">student.tree</field>
         <field name="model">school.student</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <field name="first_name"/>
-                <field name="last_name"/>
+                <field name="standard"/>
+                <field name="date_of_birth"/>
+                <field name="age"/>
+                <field name="gender"/>
                 <field name="registration_fees" sum="ABC"/>
                 <field name="tution_fees" sum="MMM"/>
                 <field name="total_fees" sum="Total" widget="monetary"/>
@@ -80,27 +64,48 @@
         <field name="model">school.student</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_Consultation,done"/>
+                    <button name="action_approve_student" id="action_student_approve" string="Approve Student"  type="object" />
+                    <button name="action_cancel_student" id="action_student_cancel" string="Cancel"  type="object" />
+                    <button name="%(school.action_student_last_school)d" string="Student Last School"  type="action" />
+                </header>
                 <sheet>
+<!--                    <div class="oe_title">-->
+<!--                        <h1>-->
+<!--                            <field name="priority" widget="priority" class="mr-3"/>-->
+<!--                        </h1>-->
+<!--                    </div>-->
+                    <div class="oe_title">
+                        <h1>
+                            <field name="heading" readonly="1"/>
+
+                        <h2>
+                            <field name="priority" widget="priority" class="mr-3"/>
+                        </h2>
+                        </h1>
+                    </div>
                     <group>
                         <group>
-                            <field name="name"/>
-
-                            <field name="first_name"/>
-                            <field name="last_name"/>
+                            <field name="name" widget="char_emojis" />
                             <field name="standard"/>
-                            <field name="age"/>
+                            <field name="date_of_birth" widget="CopyClipboardChar"/>
                         </group>
                         <group>
+                            <field name="age" widget="badge"/>
                             <field name="gender"/>
                             <field name="teacher_id"/>
-                            <field name="qualification"/>
-                            <!--                            <field name="average_ids"/>-->
-                            <button name="action_test" string="Save" type="object" class="oe_highlight"/>
-                            <button name="%(school.action_school_list)d" string="Action Save" type="action"
+                            <button name="button_save" string="Save" class="oe_highlight" type="object"/>
+                            <button name="%(action_school_list)d" string="Action Save" type="action"
                                     class="oe_highlight"/>
-                        </group>
+                            <!--<field name="average_ids"/>-->
+                        </group
+                        >
                     </group>
                     <notebook>
+                        <page string="Some Issue" nama="Some Issue">
+                            <field name="issues" placeholder="Enter Some Issue"/>
+                        </page>
                         <page string="Grade">
                             <field name="grade_ids">
                                 <tree>
@@ -109,7 +114,7 @@
                                     <field name="hindi"/>
                                     <field name="gujarati"/>
                                     <field name="maths"/>
-<!--                                    <field name="result"/>-->
+                                    <field name="result"/>
                                 </tree>
                             </field>
                         </page>

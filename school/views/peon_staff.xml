@@ -6,11 +6,11 @@
         <field name="model">peon.student</field>
         <field name="arch" type="xml">
             <kanban class="o_modules_kanban">
-                <field name="first_name" />
+                <field name="first_name"/>
                 <field name="last_name"/>
-                <field name="qualification" />
+                <field name="qualification"/>
                 <field name="gender"/>
-                            <templates>
+                <templates>
                     <t t-name="kanban-box">
                         <div class="oe_module_vignette">
                             <div class="oe_kanban_content flex-grow-1">
@@ -38,9 +38,9 @@
         <field name="model">peon.student</field>
         <field name="arch" type="xml">
             <search>
-                <field name="first_name" />
+                <field name="first_name"/>
                 <field name="last_name"/>
-                <field name="qualification" />
+                <field name="qualification"/>
                 <field name="gender"/>
                 <field name="peon_ids"/>
             </search>
@@ -68,38 +68,47 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                     <div class="oe_title">
+                    <div class="oe_title">
                         <h1>
-                            <field name="name" readonly="1"/>
+                            <field name="heading" readonly="1"/>
                         </h1>
                     </div>
                     <group>
                         <group>
-                            <field name="first_name"/>
-                            <field name="last_name"/>
+                            <field name="name"/>
                             <field name="dob"/>
-                            <field name="qualification"/>
-                            <field name="teacher_ids" widget="many2many_tags"/>
+                            <!--                            <field name="teacher_ids" widget="many2many_tags"/>-->
                         </group>
                         <group>
-                            <field name="gender"/>
                             <field name="age"/>
-                            <field name="address"/>
-                            <field name="city"/>
-                            <field name="contact"/>
-<!--                            <field name="name"/>-->
-<!--                            <field name="peon_ids"/>-->
-<!--                            <field name="address"/>-->
+                            <field name="work"/>
+
+                            <!--                            <field name="name"/>-->
+                            <!--                            <field name="peon_ids"/>-->
+                            <!--                            <field name="address"/>-->
                         </group>
                     </group>
                     <notebook>
                         <page string="Peon IDS">
-                                <field name="peon_ids">
-                                    <tree>
+                            <field name="peon_ids">
+                                <tree>
                                     <field name="name"/>
                                     <field name="present"/>
-                                    </tree>
-                                </field>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Personal Information">
+                            <group>
+                                <group>
+                                    <field name="address"/>
+                                    <field name="qualification"/>
+                                    <field name="gender"/>
+                                </group>
+                                <group>
+                                    <field name="city"/>
+                                    <field name="contact"/>
+                                </group>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>

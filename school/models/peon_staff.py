@@ -5,11 +5,13 @@ class teacher(models.Model):
     _name = "peon.student"
     _description = "student details"
 
-    name = fields.Char(string="Name",readonly=True, default= lambda x: _('New'))
+    heading = fields.Char('Heading', copy=False, readonly=True, default= lambda x: ('Peon(Staff)'))
+    name = fields.Char(string="Name")
     first_name = fields.Char(string="First Name")
     last_name = fields.Char(string="Last Name")
     dob = fields.Date(string="DOB")
     age = fields.Char(string="age",compute='_compute_age')
+    work = fields.Char(string="Work")
     qualification = fields.Char(string="Qualification")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string="Gender")
     address = fields.Char(string="Address")
@@ -32,8 +34,8 @@ class teacher(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if not vals.get('name') or vals['name'] == _('New'):
-                vals['name'] = self.env['ir.sequence'].next_by_code('peon.student') or _('New')
+            if not vals.get('heading') or vals['heading'] == _('New'):
+                vals['heading'] = self.env['ir.sequence'].next_by_code('peon.student') or _('New')
         return super().create(vals_list)
 
     def write(self, vals):

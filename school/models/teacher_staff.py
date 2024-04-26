@@ -6,12 +6,14 @@ class teacher(models.Model):
     _name = "teacher.student"
     _description = "student details"
 
-    name = fields.Char(string="Name",readonly=True, default= lambda x: _('Teachers(Staff)'))
+    heading = fields.Char(string="Heading",readonly=True, default= lambda x: _('Teachers(Staff)'))
+    name = fields.Char(string="Name")
     first_name = fields.Char(string="First Name")
     last_name = fields.Char(string="Last Name")
     dob = fields.Date(string="DOB")
     qualification = fields.Char(string="Qualification")
     age = fields.Integer(string="Age",compute='_compute_age')
+    lecture = fields.Char(string="Lecture")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string="Gender")
     address = fields.Char(string="Address")
     city = fields.Char(string="City")
@@ -37,8 +39,8 @@ class teacher(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if not vals.get('name') or vals['name'] == _('New'):
-                vals['name'] = self.env['ir.sequence'].next_by_code('teacher.student') or _('New')
+            if not vals.get('heading') or vals['heading'] == _('New'):
+                vals['heading'] = self.env['ir.sequence'].next_by_code('teacher.student') or _('New')
         return super().create(vals_list)
 
     # teacher_id = fields.Char(string="ID")
@@ -60,6 +62,6 @@ class teacher(models.Model):
         print("bbbbbbb",result)
         for rec in self:
             print("cccccc",rec)
-            result.append((rec.id, '%s(%s) -- %s' % (rec.first_name, rec.last_name, "Test")))
+            result.append((rec.id, '%s(%s) -- %s' % (rec.name, rec.age, "Test")))
             print ("dddddddd",result)
         return result

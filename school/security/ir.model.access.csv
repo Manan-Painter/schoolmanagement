@@ -10,3 +10,4 @@ school.access_attendance_peon,access_attendance_peon,school.model_attendance_peo
 school.access_attendance_guardian,access_attendance_guardian,school.model_attendance_guardian,base.group_user,1,1,1,1
 school.access_books_books,access_books_books,school.model_books_books,base.group_user,1,1,1,1
 school.access_average_grade,access_average_grade,school.model_average_grade,base.group_user,1,1,1,1
+student.last.school_acces,access_student_last_school,school.model_student_last_school,base.group_user,1,1,1,1

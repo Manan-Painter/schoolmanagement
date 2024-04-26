@@ -13,17 +13,19 @@
                     <t t-name="kanban-box">
                         <div class="oe_module_vignette">
                             <div class="oe_kanban_content flex-grow-1">
-                                    <div class="o_kanban_record_title oe_kanban_details">
-                                        <strong><field name="first_name"/></strong>
-                                    </div>
-                                    <div class="o_kanban_record_subtitle">
-                                            <field name="last_name" />
-                                            <field name="dob"/>
-                                    </div>
-                                    <div>
-                                        <field name="qualification" />
-                                    </div>
+                                <div class="o_kanban_record_title oe_kanban_details">
+                                    <strong>
+                                        <field name="first_name"/>
+                                    </strong>
                                 </div>
+                                <div class="o_kanban_record_subtitle">
+                                    <field name="last_name"/>
+                                    <field name="dob"/>
+                                </div>
+                                <div>
+                                    <field name="qualification"/>
+                                </div>
+                            </div>
                         </div>
                     </t>
                 </templates>
@@ -67,36 +69,33 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                      <div class="oe_title">
+                    <div class="oe_title">
                         <h1>
-                            <field name="name" readonly="1"/>
+                            <field name="heading" readonly="1"/>
                         </h1>
                     </div>
                     <group>
                         <group>
-                            <field name="first_name"/>
+                            <field name="name"/>
                             <field name="qualification"/>
-<!--                            <field name="name"/>-->
-                            <!--                            <field name="peon_ids" widget="many2many_tags"/>-->
                         </group>
                         <group>
-                            <field name="last_name"/>
                             <field name="dob"/>
-<!--                            <field name="teacher_ids"/>-->
+                            <field name="age"/>
+                            <field name="lecture"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Students" name="students">
                             <field name="student_ids">
                                 <tree>
-                                    <field name="first_name"/>
-                                    <field name="last_name"/>
+                                    <field name="name"/>
                                     <field name="date_of_birth"/>
                                     <field name="contact"/>
                                 </tree>
                             </field>
                         </page>
-                        <page string="Teacher Information">
+                        <page string="Personal Information">
                             <group>
                                 <group>
                                     <field name="address"/>
@@ -104,7 +103,6 @@
                                     <field name="city"/>
                                 </group>
                                 <group>
-                                    <field name="age"/>
                                     <field name="attendance_id"/>
                                     <field name="remark"/>
                                 </group>
