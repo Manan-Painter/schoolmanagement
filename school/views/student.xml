@@ -96,8 +96,7 @@
                             <field name="gender"/>
                             <field name="teacher_id"/>
                             <button name="button_save" string="Save" class="oe_highlight" type="object"/>
-                            <button name="%(action_school_list)d" string="Action Save" type="action"
-                                    class="oe_highlight"/>
+                            <button name="%(action_school_list)d" string="Action Save" type="action" class="oe_highlight"/>
                             <!--<field name="average_ids"/>-->
                         </group
                         >

@@ -20,7 +20,25 @@ class admission(models.Model):
     address = fields.Char(string="Address")
     city = fields.Char(string="City")
     contact = fields.Char(string="Contact")
+    state = fields.Selection(selection=[
+        ('draft', 'Draft'),
+        ('in_Consultation', 'In Consultation'),
+        ('done', 'Done'),
+        ('cancel', 'Cancelled')], default='draft', string='Status', required='True')
+    priority = fields.Selection(selection=[
+        ('0', 'Normal'),
+        ('1', 'Low'),
+        ('2', 'High'),
+        ('3', 'Very High')], string='Priority', required='True')
     # student_ids = fields.One2many('school.student', 'admission_id', string='Students')
+
+    def action_approve_admission(self):
+        for rec in self:
+            rec.state = "in_Consultation"
+
+    def action_cancel_admission(self):
+        for rec in self:
+            rec.state = "cancel"
 
     def _compute_age(self):
         for findage in self:

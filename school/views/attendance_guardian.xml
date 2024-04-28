@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <record model="ir.ui.view" id="attendance_guardian_kanban">
+        <field name="name">attendance.guardian.kanban</field>
+        <field name="model">attendance.guardian</field>
+        <field name="arch" type="xml">
+            <kanban class="o_modules_kanban">
+                <field name="name"/>
+                <field name="remark"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_module_vignette">
+                            <div class="oe_kanban_content flex-grow-1">
+                                <div class="o_kanban_record_title oe_kanban_details">
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                                <div class="o_kanban_record_subtitle">
+                                    <field name="remark"/>
+                                </div>
+                                <div>
+                                    <field name="remark"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <record id="view_attendance_guardian_search" model="ir.ui.view">
         <field name="model">attendance.guardian</field>
         <field name="arch" type="xml">
