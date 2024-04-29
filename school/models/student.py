@@ -88,14 +88,14 @@ class student(models.Model):
     #             vals['name'] = self.first_name
     #     return super().create(vals_list)
 
-    # def write(self, vals):
-    #     if vals.get('gender') == 'male':
-    #         self.city ="khambhat"
-    #         self.contact = "A"
-    #     elif vals.get('gender') == 'female':
-    #         self.contact = "B"
-    #     return super().write(vals)
-    # #
+    def write(self, vals):
+        if vals.get('gender') == 'male':
+            self.city ="khambhat"
+            self.contact = "A"
+        elif vals.get('gender') == 'female':
+            self.contact = "B"
+        return super().write(vals)
+
     # def unlink(self):
     #     for rec in self:
     #         if rec.gender == 'male':

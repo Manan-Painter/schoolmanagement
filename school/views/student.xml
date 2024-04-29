@@ -65,7 +65,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,in_Consultation,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_Consultation,done" options="{'clickable': True}" />
                     <button name="action_approve_student" id="action_student_approve" string="Approve Student"  type="object" />
                     <button name="action_cancel_student" id="action_student_cancel" string="Cancel"  type="object" />
                     <button name="%(school.action_student_last_school)d" string="Student Last School"  type="action" />
@@ -87,19 +87,18 @@
                     </div>
                     <group>
                         <group>
-                            <field name="name" widget="char_emojis" />
-                            <field name="standard"/>
-                            <field name="date_of_birth" widget="CopyClipboardChar"/>
+                            <field name="name" widget="char_emojis"  />
+                            <field name="standard" widget="CopyClipboardChar"/>
+                            <field name="date_of_birth"/>
                         </group>
                         <group>
-                            <field name="age" widget="badge"/>
+                            <field name="age"/>
                             <field name="gender"/>
                             <field name="teacher_id"/>
                             <button name="button_save" string="Save" class="oe_highlight" type="object"/>
                             <button name="%(action_school_list)d" string="Action Save" type="action" class="oe_highlight"/>
                             <!--<field name="average_ids"/>-->
-                        </group
-                        >
+                        </group>
                     </group>
                     <notebook>
                         <page string="Some Issue" nama="Some Issue">
