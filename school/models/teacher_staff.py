@@ -22,6 +22,16 @@ class teacher(models.Model):
     attendance_id = fields.Many2one('attendance.teacher','attendance')
     remark = fields.Char(string="Teacher Remark", related='attendance_id.remark')
     company_id = fields.Many2one("res.company","Company")
+    state = fields.Selection(selection=[
+        ('draft', 'Draft'),
+        ('in_Consultation', 'In Consultation'),
+        ('done', 'Done'),
+        ('cancel', 'Cancelled')], default='draft', string='Status', required='True')
+    priority = fields.Selection(selection=[
+        ('0', 'Normal'),
+        ('1', 'Low'),
+        ('2', 'High'),
+        ('3', 'Very High')], string='Priority', required='True')
 
 
     def _compute_age(self):

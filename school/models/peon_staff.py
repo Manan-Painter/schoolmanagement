@@ -20,8 +20,16 @@ class teacher(models.Model):
     peon_ids = fields.One2many('attendance.peon','peon_id')
     teacher_ids = fields.Many2many("teacher.student", "peon_teacher_rel", string="Teacher")
     address = fields.Char(string="Address", related='teacher_ids.remark')
-
-
+    state = fields.Selection(selection=[
+        ('draft', 'Draft'),
+        ('in_Consultation', 'In Consultation'),
+        ('done', 'Done'),
+        ('cancel', 'Cancelled')], default='draft', string='Status', required='True')
+    priority = fields.Selection(selection=[
+        ('0', 'Normal'),
+        ('1', 'Low'),
+        ('2', 'High'),
+        ('3', 'Very High')], string='Priority', required='True')
 
     def _compute_age(self):
         for findage in self:
