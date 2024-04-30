@@ -21,6 +21,8 @@ class teacher(models.Model):
     student_ids = fields.One2many('school.student', 'teacher_id', string='Students')
     attendance_id = fields.Many2one('attendance.teacher','attendance')
     remark = fields.Char(string="Teacher Remark", related='attendance_id.remark')
+    company_id = fields.Many2one("res.company","Company")
+
 
     def _compute_age(self):
         for findage in self:

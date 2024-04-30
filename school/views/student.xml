@@ -71,11 +71,6 @@
                     <button name="%(school.action_student_last_school)d" string="Student Last School"  type="action" />
                 </header>
                 <sheet>
-<!--                    <div class="oe_title">-->
-<!--                        <h1>-->
-<!--                            <field name="priority" widget="priority" class="mr-3"/>-->
-<!--                        </h1>-->
-<!--                    </div>-->
                     <div class="oe_title">
                         <h1>
                             <field name="heading" readonly="1"/>
@@ -179,6 +174,18 @@
         <field name="res_model">school.student</field>
         <field name="view_mode">tree,form,pivot,graph,kanban</field>
         <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first addmission form
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_school_list_1">
+        <field name="name">Student List 1</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">tree,form,pivot,graph,kanban</field>
+        <field name="context">{'default_partner_id': 10, 'default_contact': 'ABC'}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first addmission form

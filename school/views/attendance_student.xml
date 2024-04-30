@@ -44,7 +44,8 @@
                             <field name="type_student"/>
                             <field name="present"/>
                             <field name="absent"/>
-                            <field name="teacher_id"/>
+                            <field name="company_id"/>
+                            <field name="teacher_id" context="{'default_company_id': company_id}"/>
                         </group>
                         <group>
                             <field name="remark"/>

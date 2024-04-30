@@ -13,4 +13,5 @@ class attendance_student(models.Model):
     type_student = fields.Selection(
         [('clever', 'Clever'), ('medium', 'Medium'), ('low', 'Low')], default="low", string='Student Type')
     teacher_id = fields.Many2one("teacher.student")
+    company_id = fields.Many2one("res.company", "Company")
 

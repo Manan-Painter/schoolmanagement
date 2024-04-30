@@ -8,6 +8,7 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="wiz_admission_id" readonly="1" context="{}"/>
                             <field name="reason"/>
                         </group>
                     </group>

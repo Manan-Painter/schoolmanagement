@@ -17,6 +17,14 @@
             parent="menu_student_root"
             action="action_school_list"
             sequence="0"/>
+
+    <menuitem
+            id="menu_student_list_root1"
+            name="Student List 1"
+            parent="menu_student_root"
+            action="action_school_list_1"
+            sequence="0"/>
+
     <menuitem
             id="menu_admission_root"
             name="Admission Form"

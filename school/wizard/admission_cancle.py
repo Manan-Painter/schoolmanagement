@@ -7,4 +7,5 @@ class AdmissionCancel(models.Model):
 
 
     reason = fields.Char(string="Reason")
+    wiz_admission_id = fields.Many2one("admission.student", "Admission")
 
