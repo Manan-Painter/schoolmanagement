@@ -46,12 +46,11 @@
         <field name="model">guardian.student</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="name"/>
                 <field name="dob"/>
                 <field name="qualification"/>
-                <field name="gender"/>
-                <field name="address"/>
-                <field name="city"/>
-                <field name="contact"/>
+                <field name="age"/>
+                <field name="work"/>
             </tree>
         </field>
     </record>

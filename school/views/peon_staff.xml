@@ -38,11 +38,10 @@
         <field name="model">peon.student</field>
         <field name="arch" type="xml">
             <search>
-                <field name="first_name"/>
-                <field name="last_name"/>
-                <field name="qualification"/>
-                <field name="gender"/>
-                <field name="peon_ids"/>
+                <field name="name"/>
+                <field name="dob"/>
+                <field name="age"/>
+                <field name="work"/>
             </search>
         </field>
     </record>
@@ -51,14 +50,10 @@
         <field name="model">peon.student</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="first_name"/>
-                <field name="last_name"/>
+                <field name="name"/>
                 <field name="dob"/>
-                <field name="qualification"/>
-                <field name="gender"/>
-                <field name="address"/>
-                <field name="city"/>
-                <field name="contact"/>
+                <field name="age"/>
+                <field name="work"/>
             </tree>
         </field>
     </record>

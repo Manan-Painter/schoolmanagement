@@ -37,6 +37,9 @@
             <search>
                 <field name="name"/>
                 <field name="gender"/>
+                <filter string="Gender" name="group_by_activity_type" context="{'group_by': 'gender'}"/>
+                <filter string="Standard" name="std" context="{'group_by': 'standard'}"/>
+                <filter string="12th Standard" name="group_by_activity_type" context="{'standard': '12'}"/>
             </search>
         </field>
     </record>
@@ -65,24 +68,26 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,in_Consultation,done" options="{'clickable': True}" />
-                    <button name="action_approve_student" id="action_student_approve" string="Approve Student"  type="object" />
-                    <button name="action_cancel_student" id="action_student_cancel" string="Cancel"  type="object" />
-                    <button name="%(school.action_student_last_school)d" string="Student Last School"  type="action" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_Consultation,done"
+                           options="{'clickable': True}"/>
+                    <button name="action_approve_student" id="action_student_approve" string="Approve Student"
+                            type="object"/>
+                    <button name="action_cancel_student" id="action_student_cancel" string="Cancel" type="object"/>
+                    <button name="%(school.action_student_last_school)d" string="Student Last School" type="action"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
                         <h1>
                             <field name="heading" readonly="1"/>
 
-                        <h2>
-                            <field name="priority" widget="priority" class="mr-3"/>
-                        </h2>
+                            <h2>
+                                <field name="priority" widget="priority" class="mr-3"/>
+                            </h2>
                         </h1>
                     </div>
                     <group>
                         <group>
-                            <field name="name" widget="char_emojis"  />
+                            <field name="name" widget="char_emojis"/>
                             <field name="standard" widget="CopyClipboardChar"/>
                             <field name="date_of_birth"/>
                         </group>
@@ -91,7 +96,8 @@
                             <field name="gender"/>
                             <field name="teacher_id"/>
                             <button name="button_save" string="Save" class="oe_highlight" type="object"/>
-                            <button name="%(action_school_list)d" string="Action Save" type="action" class="oe_highlight"/>
+                            <button name="%(action_school_list)d" string="Action Save" type="action"
+                                    class="oe_highlight"/>
                             <!--<field name="average_ids"/>-->
                         </group>
                     </group>
