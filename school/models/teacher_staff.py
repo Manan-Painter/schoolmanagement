@@ -31,7 +31,7 @@ class teacher(models.Model):
         ('0', 'Normal'),
         ('1', 'Low'),
         ('2', 'High'),
-        ('3', 'Very High')], string='Priority', required='True')
+        ('3', 'Very High')], string='Priority')
 
 
     def _compute_age(self):

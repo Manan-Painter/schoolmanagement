@@ -8,7 +8,7 @@ class admission(models.Model):
 
 
     heading = fields.Char('Heading', copy=False, readonly=True, default= lambda x: _('Admission Form'))
-    name = fields.Char(string="Name",require='True')
+    name = fields.Char(string="Name")
     academic_year = fields.Char(string="Academic Year")
     admission_date = fields.Date(string="Admission Date")
     std = fields.Integer(string="Class")
@@ -29,7 +29,7 @@ class admission(models.Model):
         ('0', 'Normal'),
         ('1', 'Low'),
         ('2', 'High'),
-        ('3', 'Very High')], string='Priority', required='True')
+        ('3', 'Very High')], string='Priority')
     # student_ids = fields.One2many('school.student', 'admission_id', string='Students')
 
     def action_approve_admission(self):

@@ -8,7 +8,7 @@ class student(models.Model):
     _description = "student details"
 
     heading = fields.Char('Heading', copy=False, readonly=True, default= lambda x: ('Student List'))
-    name = fields.Char('Name', require='True')
+    name = fields.Char('Name')
     # first_name = fields.Char(sring="first_name")
     standard = fields.Char(string="Standard")
     date_of_birth = fields.Date(string="Date Of Birth")
@@ -37,7 +37,7 @@ class student(models.Model):
         ('0', 'Normal'),
         ('1', 'Low'),
         ('2', 'High'),
-        ('3', 'Very High')], string='Priority', required='True')
+        ('3', 'Very High')], string='Priority')
     donation_fees = fields.Float("Donation")
     grade_ids = fields.One2many('average.grade','student_id',string="Grade")
     issues = fields.Html(string="Issue")
