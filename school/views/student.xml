@@ -39,7 +39,7 @@
                 <field name="gender"/>
                 <filter string="Gender" name="group_by_activity_type" context="{'group_by': 'gender'}"/>
                 <filter string="Standard" name="std" context="{'group_by': 'standard'}"/>
-                <filter string="12th Standard" name="group_by_activity_type" context="{'standard': '12'}"/>
+                <filter string="12th Standard" name="group_by_activity_type" domain="[('standard','=', '12')]"/>
             </search>
         </field>
     </record>
@@ -191,6 +191,7 @@
         <field name="name">Student List 1</field>
         <field name="res_model">school.student</field>
         <field name="view_mode">tree,form,pivot,graph,kanban</field>
+         <field name="domain">[('total_fees', '>',0)]</field>
         <field name="context">{'default_partner_id': 10, 'default_contact': 'ABC'}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

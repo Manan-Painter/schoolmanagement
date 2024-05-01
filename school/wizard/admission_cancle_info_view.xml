@@ -8,8 +8,8 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="wiz_admission_id" readonly="1" context="{'admission_id': wiz_admission_id }"/>
-                            <field name="reason"/>
+                            <field name="name"/>
+                            <field name="wiz_admission_id" />
                         </group>
                     </group>
                 </sheet>
