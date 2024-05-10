@@ -6,11 +6,13 @@ from odoo.exceptions import ValidationError
 class student(models.Model):
     _name = "school.student"
     _description = "student details"
+    _rec_name = 'gender'
 
     heading = fields.Char('Heading', copy=False, readonly=True, default= lambda x: ('Student List'))
     name = fields.Char('Name')
     # first_name = fields.Char(sring="first_name")
-    standard = fields.Char(string="Standard")
+    standard = fields.Integer(string="Standard")
+    school_standard = fields.Integer(string="Standard")
     date_of_birth = fields.Date(string="Date Of Birth")
     age = fields.Char(string="Student Age", compute="_compute_age")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string="Gender", default="female")
@@ -41,6 +43,16 @@ class student(models.Model):
     donation_fees = fields.Float("Donation")
     grade_ids = fields.One2many('average.grade','student_id',string="Grade")
     issues = fields.Html(string="Issue")
+
+    _sql_constraints = [
+        ('number_uniq', 'CHECK(school_standard >= 10)', 'Please enter a valid Standard  .'),
+    ]
+    @api.constrains('standard')
+    def _check_std(self):
+        for std in self:
+            if int(std.standard) >= 10:
+                raise ValidationError("Plz Enter Primary standard")
+
     @api.depends("registration_fees", "tution_fees")
     def _compute_total_fees(self):
         for rec in self:

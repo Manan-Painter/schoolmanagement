@@ -38,7 +38,10 @@
                 <field name="name"/>
                 <field name="gender"/>
                 <field name="std"/>
-                                <filter string="Medium" name="medium" context="{'group_by': 'medium'}"/>
+                <filter string="Medium" name="medium" context="{'group_by': 'medium'}"/>
+                <filter string="10th Class" name="group_by_activity_type" domain="[('std','=', '10')]"/>
+                <filter string="Gujarati" name="group_by_activity_type" domain="[('second_language','=', 'gujarati')]"/>
+                <filter string="English" name="group_by_activity_type" domain="[('second_language','=', 'english')]"/>
 
             </search>
         </field>

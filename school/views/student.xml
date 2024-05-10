@@ -40,6 +40,9 @@
                 <filter string="Gender" name="group_by_activity_type" context="{'group_by': 'gender'}"/>
                 <filter string="Standard" name="std" context="{'group_by': 'standard'}"/>
                 <filter string="12th Standard" name="group_by_activity_type" domain="[('standard','=', '12')]"/>
+<!--                <filter string="Age" name="group_by_activity_type" domain="[('age','>=', '5')]"/>-->
+                <filter string="Male" name="group_by_activity_type" domain="[('gender','=', 'male')]"/>
+                <filter string="Female" name="group_by_activity_type" domain="[('gender','=', 'female')]"/>
             </search>
         </field>
     </record>
@@ -88,7 +91,7 @@
                     <group>
                         <group>
                             <field name="name" widget="char_emojis"/>
-                            <field name="standard" widget="CopyClipboardChar"/>
+                            <field name="school_standard" />
                             <field name="date_of_birth"/>
                         </group>
                         <group>

@@ -38,6 +38,8 @@
         "views/average_grade.xml",
         "views/purchase_order.xml",
         "wizard/admission_cancle_info_view.xml",
+        "report/school_student_report_action.xml",
+        "report/school_report_template.xml",
     ],
     'installable': True,
     'application': True,
