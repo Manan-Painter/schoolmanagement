@@ -12,7 +12,7 @@
     This is school Managemnt
     """,
     'category': 'school',
-    'depends': ["sale","mail","purchase"],
+    'depends': ["sale","mail","purchase","web"],
     'data': [
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
@@ -40,6 +40,7 @@
         "wizard/admission_cancle_info_view.xml",
         "report/school_student_report_action.xml",
         "report/school_report_template.xml",
+        "report/admission_report_template.xml",
     ],
     'installable': True,
     'application': True,

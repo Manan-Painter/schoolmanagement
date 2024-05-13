@@ -109,6 +109,9 @@
                                 </group>
                             </group>
                         </page>
+                        <page string="Students">
+                        <field name="student_ids"/>
+                    </page>
                     </notebook>
                 </sheet>
             </form>

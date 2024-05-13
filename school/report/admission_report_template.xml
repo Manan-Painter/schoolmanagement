@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_admission_student_template">
+       <t t-foreach="docs" t-as="o">
+           <t t-call="web.external_layout">
+               <div class="page">
+                   <div class="oe_structure"/>
+                   <h2>Admission Report</h2>
+                   <p>Name:<span t-field="o.name"/></p>
+
+                       <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Name</th>
+                              <th scope="col">Standard</th>
+                              <th scope="col">Dob</th>
+                              <th scope="col">Age</th>
+                            </tr>
+                          </thead>
+
+                          <t t-foreach="o.student_ids" t-as="student">
+                                <tbody>
+                              <tr>
+                              <td><span t-field="student.name"/></td>
+                              <td><span t-field="student.school_standard"/></td>
+                              <td><span t-field="student.date_of_birth"/></td>
+                              <td><span t-field="student.age"/></td>
+                            </tr>
+                                </tbody>
+                          </t>
+
+                        </table>
+<!--                       <p>Name: <span t-field="student.name"/></p><p>Age: <span t-field="student.age"/></p>-->
+               </div>
+           </t>
+       </t>
+    </template>
+
+    <template id="report_admission_student">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="school.report_admission_student_template"/>
+        </t>
+    </t>
+</template>
+</odoo>

@@ -6,9 +6,9 @@ class admission(models.Model):
     _name = "admission.student"
     _description = "student details"
 
-    def _get_student_data(self):
-        domain = "[('standard', '=', '12')]"
-        return domain
+    # def _get_student_data(self):
+    #     domain = "[('standard', '=', '12')]"
+    #     return domain
 
     heading = fields.Char('Heading', copy=False, readonly=True, default= lambda x: _('Admission Form'))
     name = fields.Char(string="Name")
@@ -33,7 +33,7 @@ class admission(models.Model):
         ('1', 'Low'),
         ('2', 'High'),
         ('3', 'Very High')], string='Priority')
-    # student_ids = fields.One2many('school.student', 'admission_id', string='Students')
+    student_ids = fields.One2many('school.student', 'admission_id', string='Students')
     student_id = fields.Many2one('school.student' ,string='Student')
     # domain = "[('standard', '=', '12'))]"
     # , domain = _get_student_data
