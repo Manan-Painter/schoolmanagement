@@ -12,7 +12,7 @@
     This is school Managemnt
     """,
     'category': 'school',
-    'depends': ["sale","mail","purchase","web"],
+    'depends': ["sale","mail","purchase","web","account"],
     'data': [
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
@@ -41,6 +41,7 @@
         "report/school_student_report_action.xml",
         "report/school_report_template.xml",
         "report/admission_report_template.xml",
+        "report/inherit_invoice_template.xml",
     ],
     'installable': True,
     'application': True,
