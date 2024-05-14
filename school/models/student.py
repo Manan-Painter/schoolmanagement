@@ -6,7 +6,7 @@ from odoo.exceptions import ValidationError
 class student(models.Model):
     _name = "school.student"
     _description = "student details"
-    _rec_name = 'gender'
+    # _rec_name = 'gender'
 
     heading = fields.Char('Heading', copy=False, readonly=True, default= lambda x: ('Student List'))
     name = fields.Char('Name')
@@ -43,6 +43,7 @@ class student(models.Model):
     donation_fees = fields.Float("Donation")
     grade_ids = fields.One2many('average.grade','student_id',string="Grade")
     issues = fields.Html(string="Issue")
+    company_id = fields.Many2one('res.company','Company')
 
     _sql_constraints = [
         ('number_uniq', 'CHECK(school_standard >= 10)', 'Please enter a valid Standard  .'),

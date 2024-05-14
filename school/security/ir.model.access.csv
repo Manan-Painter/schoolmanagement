@@ -12,3 +12,4 @@ school.access_books_books,access_books_books,school.model_books_books,base.group
 school.access_average_grade,access_average_grade,school.model_average_grade,base.group_user,1,1,1,1
 student.last.school_acces,access_student_last_school,school.model_student_last_school,base.group_user,1,1,1,1
 school.access_admission_cancel,access_admission_cancel,school.model_admission_cancel,base.group_user,1,1,1,1
+school.access_school_student_list,access_school_student_list,school.model_school_student_list,base.group_user,1,1,1,1

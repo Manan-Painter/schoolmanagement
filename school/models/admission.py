@@ -2,6 +2,24 @@ from odoo import fields, models,api,_
 from datetime import date
 
 
+class school_student_list(models.Model):
+    _name = "school.student.list"
+    _description = "school.student.list"
+
+    admission_list_id = fields.Many2one("admission.student")
+    student_id = fields.Many2one('school.student', string='Student')
+    age = fields.Char(related="student_id.age")
+    stu_list_registration_fees = fields.Float("Registration Fees")
+
+    @api.onchange('student_id')
+    def onchange_student(self):
+        if self.student_id:
+            self.stu_list_registration_fees = self.student_id.registration_fees
+
+    # @api.onchange("student_id")
+    # def student_id(self):
+    #     self.stu_list_registration_fees = self.student_id.registration_fees
+
 class admission(models.Model):
     _name = "admission.student"
     _description = "student details"
@@ -35,6 +53,7 @@ class admission(models.Model):
         ('3', 'Very High')], string='Priority')
     student_ids = fields.One2many('school.student', 'admission_id', string='Students')
     student_id = fields.Many2one('school.student' ,string='Student')
+    student_list_ids = fields.One2many('school.student.list', 'admission_list_id', string='Students')
     # domain = "[('standard', '=', '12'))]"
     # , domain = _get_student_data
 
@@ -67,3 +86,5 @@ class admission(models.Model):
         elif vals.get('gender') == 'female':
             self.contact = "2356891256"
         return super().write(vals)
+
+

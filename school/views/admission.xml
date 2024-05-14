@@ -112,6 +112,22 @@
                         <page string="Students">
                         <field name="student_ids"/>
                     </page>
+                        <page string="Student List">
+                            <field name="student_list_ids">
+                                <form>
+                                    <group>
+                                    <field name="student_id" string="Student"/>
+                                        <field name="age"/>
+                                        <field name="stu_list_registration_fees"/>
+                                    </group>
+                                </form>
+                                <tree string="Student List">
+                                    <field name="student_id" string="Student"/>
+                                    <field name="age"/>
+                                    <field name="stu_list_registration_fees"/>FF
+                                </tree>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>

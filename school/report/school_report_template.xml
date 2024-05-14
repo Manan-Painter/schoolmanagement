@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_school_student_template">
-       <t t-foreach="docs" t-as="o">
            <t t-call="web.external_layout">
                <div class="page">
                    <div class="oe_structure"/>
                    <h2>Student Report</h2>
-                   <p><span t-field="o.name"/></p>
+                   <p><span t-field="doc.name"/></p>
                </div>
            </t>
-       </t>
     </template>
 
     <template id="report_school_student">
