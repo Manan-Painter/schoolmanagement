@@ -61,78 +61,78 @@
         </field>
     </record>
 
-<!--    <record id="view_admission_student_form" model="ir.ui.view">-->
-<!--        <field name="model">admission.student</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <form>-->
-<!--                <header>-->
-<!--                    <field name="state" widget="statusbar" statusbar_visible="draft,in_Consultation,done" options="{'clickable': True}"/>-->
-<!--                    <button name="action_approve_admission" id="action_admission_approve" string="Approve Admission"-->
-<!--                            type="object"/>-->
-<!--                    <button name="action_cancel_admission" id="action_admission_cancel" string="Cancel" type="object"/>-->
-<!--                    <button name="%(school.action_admission_cancel)d" string="Admission Cancel" type="action"/>-->
-<!--                </header>-->
-<!--                <sheet>-->
-<!--                    <div class="oe_title">-->
-<!--                        <h1>-->
-<!--                            <field name="heading" readonly="1"/>-->
-<!--                            <h2>-->
-<!--                                <field name="priority" widget="priority" class="mr-3"/>-->
-<!--                            </h2>-->
-<!--                        </h1>-->
-<!--                    </div>-->
-<!--                    <group>-->
-<!--                        <group>-->
-<!--                            <field name="name"/>-->
-<!--                            <field name="student_id" domain="[('partner_id.city','=','Fremont')]"/>-->
-<!--                            <field name="academic_year"/>-->
-<!--                            <field name="admission_date"/>-->
-<!--                        </group>-->
-<!--                        <group>-->
-<!--                            <field name="std"/>-->
-<!--                            <field name="second_language"/>-->
-<!--                            <field name="medium"/>-->
-<!--                        </group>-->
-<!--                    </group>-->
-<!--                    <notebook>-->
-<!--                        <page string="Personal Information">-->
-<!--                            <group>-->
-<!--                                <group>-->
-<!--                                    <field name="date_of_birth"/>-->
-<!--                                    <field name="age"/>-->
-<!--                                    <field name="city"/>-->
-<!--                                </group>-->
-<!--                                <group>-->
-<!--                                    <field name="gender"/>-->
-<!--                                    <field name="address"/>-->
-<!--                                    <field name="contact"/>-->
-<!--                                </group>-->
-<!--                            </group>-->
-<!--                        </page>-->
-<!--                        <page string="Students">-->
-<!--                        <field name="student_ids"/>-->
-<!--                    </page>-->
-<!--                        <page string="Student List">-->
-<!--                            <field name="student_list_ids">-->
-<!--                                <form>-->
-<!--                                    <group>-->
-<!--                                    <field name="student_id" string="Student"/>-->
-<!--                                        <field name="age"/>-->
-<!--                                        <field name="stu_list_registration_fees"/>-->
-<!--                                    </group>-->
-<!--                                </form>-->
-<!--                                <tree string="Student List">-->
-<!--                                    <field name="student_id" string="Student"/>-->
-<!--                                    <field name="age"/>-->
-<!--                                    <field name="stu_list_registration_fees"/>FF-->
-<!--                                </tree>-->
-<!--                            </field>-->
-<!--                        </page>-->
-<!--                    </notebook>-->
-<!--                </sheet>-->
-<!--            </form>-->
-<!--        </field>-->
-<!--    </record>-->
+    <record id="view_admission_student_form" model="ir.ui.view">
+        <field name="model">admission.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_Consultation,done" options="{'clickable': True}"/>
+                    <button name="action_approve_admission" id="action_admission_approve" string="Approve Admission"
+                            type="object"/>
+                    <button name="action_cancel_admission" id="action_admission_cancel" string="Cancel" type="object"/>
+                    <button name="%(school.action_admission_cancel)d" string="Admission Cancel" type="action"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="heading" readonly="1"/>
+                            <h2>
+                                <field name="priority" widget="priority" class="mr-3"/>
+                            </h2>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="student_id" domain="[('partner_id.city','=','Fremont')]"/>
+                            <field name="academic_year"/>
+                            <field name="admission_date"/>
+                        </group>
+                        <group>
+                            <field name="std"/>
+                            <field name="second_language"/>
+                            <field name="medium"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Personal Information">
+                            <group>
+                                <group>
+                                    <field name="date_of_birth"/>
+                                    <field name="age"/>
+                                    <field name="city"/>
+                                </group>
+                                <group>
+                                    <field name="gender"/>
+                                    <field name="address"/>
+                                    <field name="contact"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Students">
+                        <field name="student_ids"/>
+                    </page>
+                        <page string="Student List">
+                            <field name="student_list_ids">
+                                <form>
+                                    <group>
+                                    <field name="student_id" string="Student"/>
+                                        <field name="age"/>
+                                        <field name="stu_list_registration_fees"/>
+                                    </group>
+                                </form>
+                                <tree string="Student List">
+                                    <field name="student_id" string="Student"/>
+                                    <field name="age"/>
+                                    <field name="stu_list_registration_fees"/>FF
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
     <record model="ir.actions.act_window" id="action_school_admission">
         <field name="name">Admission Form</field>

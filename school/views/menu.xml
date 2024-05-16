@@ -43,6 +43,7 @@
             name="Teacher"
             parent="menu_staff_root"
             action="action_teacher_list"
+            groups="group_school_teacher"
             sequence="0"/>
 
     <menuitem
@@ -51,6 +52,7 @@
             parent="menu_staff_root"
             action="action_peon_list"
             sequence="0"/>
+    <!--groups="!school.group_school_student"-->
 
     <menuitem
             id="menu_staff_guardian_root"

@@ -14,6 +14,7 @@
     'category': 'school',
     'depends': ["sale","mail","purchase","web","account"],
     'data': [
+        'security/school_groups.xml',
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'data/ir_sequence_addmission_data.xml',

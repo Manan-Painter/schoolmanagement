@@ -2,7 +2,7 @@
 <odoo>
     <template id="report_school_student_template">
            <t t-call="web.external_layout">
-               <div class="page">
+                   <div class="page">
                    <div class="oe_structure"/>
                    <h2>Student Report</h2>
                    <p><span t-field="doc.name"/></p>
