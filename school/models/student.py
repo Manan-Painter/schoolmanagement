@@ -48,11 +48,11 @@ class student(models.Model):
     _sql_constraints = [
         ('number_uniq', 'CHECK(school_standard >= 10)', 'Please enter a valid Standard  .'),
     ]
-    @api.constrains('standard')
-    def _check_std(self):
-        for std in self:
-            if int(std.standard) >= 10:
-                raise ValidationError("Plz Enter Primary standard")
+    # @api.constrains('standard')
+    # def _check_std(self):
+    #     for std in self:
+    #         if int(std.standard) >= 10:
+    #             raise ValidationError("Plz Enter Primary standard")
 
     @api.depends("registration_fees", "tution_fees")
     def _compute_total_fees(self):
