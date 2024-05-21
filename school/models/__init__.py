@@ -17,3 +17,4 @@ from . import res_partener
 from . import product
 from . import avverage_grade
 from . import purchase_order
+from . import timesheet

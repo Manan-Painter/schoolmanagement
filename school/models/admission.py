@@ -81,10 +81,21 @@ class admission(models.Model):
         return super().create(vals_list)
 
     def write(self, vals):
+        res = super().write(vals)
         if vals.get('gender') == 'male':
             self.contact = "1245782356"
         elif vals.get('gender') == 'female':
             self.contact = "2356891256"
-        return super().write(vals)
+        if self.std <= 5:
+            for line in self.student_list_ids:
+                print ("lllll",line,line.student_id.name)
+                # line.stu_list_registration_fees = 250
+                line.update({
+                    "stu_list_registration_fees":250,
+                })
+                # self.update({"student_list_ids" : [(1, line.id, {
+                #     "stu_list_registration_fees": 300,
+                # })]})
+        return res
 
 

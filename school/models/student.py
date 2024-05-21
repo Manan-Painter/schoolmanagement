@@ -89,10 +89,21 @@ class student(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        res = super().create(vals_list)
+        print ("rrrrrrrr",res)
         for vals in vals_list:
             if not vals.get('heading') or vals['heading'] == _('New'):
                 vals['heading'] = self.env['ir.sequence'].next_by_code('school.student') or _('New')
-        return super().create(vals_list)
+        admission_student_vals = {
+            "name": res.name,
+            "student_list_ids": [
+                (0, 0, {'student_id': res.id}),
+            ],
+        }
+        admission_id = self.env['admission.student'].create(admission_student_vals)
+        print ("=====admission_id==",admission_id)
+        return res
+
 
     # @api.model_create_multi
     # def create(self, vals_list):
