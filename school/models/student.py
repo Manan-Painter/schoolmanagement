@@ -9,6 +9,7 @@ class student(models.Model):
     # _rec_name = 'gender'
 
     heading = fields.Char('Heading', copy=False, readonly=True, default= lambda x: ('Student List'))
+    teacher = fields.Char(string="Teacher")
     name = fields.Char('Name')
     # first_name = fields.Char(sring="first_name")
     standard = fields.Integer(string="Standard")
@@ -44,6 +45,7 @@ class student(models.Model):
     grade_ids = fields.One2many('average.grade','student_id',string="Grade")
     issues = fields.Html(string="Issue")
     company_id = fields.Many2one('res.company','Company')
+    # teacher_id = fields.Many2one("teacher.student", "teacher")
 
     _sql_constraints = [
         ('number_uniq', 'CHECK(school_standard >= 10)', 'Please enter a valid Standard  .'),
@@ -101,8 +103,35 @@ class student(models.Model):
             ],
         }
         admission_id = self.env['admission.student'].create(admission_student_vals)
-        print ("=====admission_id==",admission_id)
+        print ("=====admission_id==",)
         return res
+
+        # teacher_student_vals = {
+        #     "name": res.teacher,
+        #     "student_ids": [
+        #         (0, 0, {'student_ids': res.id}),
+        #     ],
+        # }
+        # teacher_id = self.env['teacher.student'].create(teacher_student_vals)
+        # return res
+
+
+    # @api.model_create_multi
+    # def create(self, vals_list):
+    #     res = super().create(vals_list)
+    #     print("rrrrrrrr", res)
+    #     for vals in vals_list:
+    #         if not vals.get('heading') or vals['heading'] == _('New'):
+    #             vals['heading'] = self.env['ir.sequence'].next_by_code('school.student') or _('New')
+    #     admission_student_vals = {
+    #         "name": res.teacher,
+    #         "student_list_ids": [
+    #             (0, 0, {'student_id': res.id}),
+    #         ],
+    #     }
+    #     admission_id = self.env['admission.student'].create(admission_student_vals)
+    #     print("=====admission_id==", admission_id)
+    #     return res
 
 
     # @api.model_create_multi

@@ -41,6 +41,7 @@
                             <field name="present"/>
                             <field name="absent"/>
                                                             <field name = "remark"/>
+                            <field name = 'student_id'/>
 
                         </group>
                         <group>

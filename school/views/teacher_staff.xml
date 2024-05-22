@@ -90,6 +90,7 @@
                             <field name="dob"/>
                             <field name="age"/>
                             <field name="lecture"/>
+<!--                            <field name="student_id"/>-->
                         </group>
                     </group>
                     <notebook>

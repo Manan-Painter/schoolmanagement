@@ -22,6 +22,7 @@ class teacher(models.Model):
     attendance_id = fields.Many2one('attendance.teacher','attendance')
     remark = fields.Char(string="Teacher Remark", related='attendance_id.remark')
     company_id = fields.Many2one("res.company","Company")
+    # student_id = fields.Many2one("school.student","Student")
     state = fields.Selection(selection=[
         ('draft', 'Draft'),
         ('in_Consultation', 'In Consultation'),
@@ -32,6 +33,7 @@ class teacher(models.Model):
         ('1', 'Low'),
         ('2', 'High'),
         ('3', 'Very High')], string='Priority')
+    # students_ids = fields.One2many("school.student","teacher_id",'Student')
 
 
     def _compute_age(self):
@@ -60,20 +62,27 @@ class teacher(models.Model):
     def new_method(self):
         pass
 
-    @api.model
-    def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):
-        print ("======ar===",args,name)
-        args = list(args or [])
-        if name:
-            args += ['|', ('name', operator, name), ('qualification', operator, name)]
-        return self._search(args, limit=limit, access_rights_uid=name_get_uid)
+    # @api.model
+    # def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):
+    #     print ("======ar===",args,name)
+    #     args = list(args or [])
+    #     if name:
+    #         args += ['|', ('name', operator, name), ('qualification', operator, name)]
+    #     return self._search(args, limit=limit, access_rights_uid=name_get_uid)
 
     def name_get(self):
-        print("aaaaaaaaa",self)
         result = []
-        print("bbbbbbb",result)
-        for rec in self:
-            print("cccccc",rec)
-            result.append((rec.id, '%s(%s) -- %s' % (rec.name, rec.age, "Test")))
-            print ("dddddddd",result)
+        for account in self:
+            name = account.code + ' ' + account.name
+            result.append((account.id, name))
         return result
+
+    # def name_get(self):
+    #     print("aaaaaaaaa",self)
+    #     result = []
+    #     print("bbbbbbb",result)
+    #     for rec in self:
+    #         print("cccccc",rec)
+    #         result.append((rec.id, '%s(%s) -- %s' % (rec.name, rec.age, "Test")))
+    #         print ("dddddddd",result)
+    #     return result

@@ -13,3 +13,4 @@ class attendance_teacher(models.Model):
     start_time = fields.Datetime(string="Start Time")
     end_time = fields.Datetime(string="End Time")
     teacher_ids = fields.One2many('teacher.student', 'attendance_id', 'Teacher')
+    student_id = fields.Many2one("school.student","Student")

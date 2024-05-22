@@ -94,6 +94,7 @@
                             <field name="school_standard" />
                             <field name="date_of_birth"/>
                             <field name="company_id"/>
+                            <field name="teacher_id"/>
                         </group>
                         <group>
                             <field name="age"/>
