@@ -34,4 +34,11 @@
         <field name="comment">the user will have access to all data in the school application.</field>
     </record>
 
+<!--    <record id="group_school_account" model="res.groups">-->
+<!--        <field name="name">Account</field>-->
+<!--        <field name="category_id" ref="base.module_category_school"/>-->
+<!--        <field name="implied_ids" eval="[(4, ref('group_school_account'))]"/>-->
+<!--        <field name="comment">the user will have access to all data in the school application.</field>-->
+<!--    </record>-->
+
 </odoo>

@@ -21,6 +21,7 @@
         'data/ir_sequence_teacher_data.xml',
         'data/ir_sequence_peon_data.xml',
         'data/ir_sequence_guardian_data.xml',
+        'data/student.xml',
         "wizard/student_last_school_info_view.xml",
         'views/student.xml',
         'views/admission.xml',

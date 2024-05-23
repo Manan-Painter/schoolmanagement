@@ -75,10 +75,15 @@ class admission(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        res = super().create(vals_list)
         for vals in vals_list:
             if not vals.get('heading') or vals['heading'] == _('New'):
                 vals['heading'] = self.env['ir.sequence'].next_by_code('admission.student') or _('New')
-        return super().create(vals_list)
+        books_student_vals = {
+            "name": res.name
+        }
+        books_id = self.env["books.books"].create(books_student_vals)
+        return res
 
     def write(self, vals):
         res = super().write(vals)

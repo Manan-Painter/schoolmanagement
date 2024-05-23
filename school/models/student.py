@@ -47,6 +47,7 @@ class student(models.Model):
     company_id = fields.Many2one('res.company','Company')
     # teacher_id = fields.Many2one("teacher.student", "teacher")
 
+
     _sql_constraints = [
         ('number_uniq', 'CHECK(school_standard >= 10)', 'Please enter a valid Standard  .'),
     ]
