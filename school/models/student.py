@@ -6,6 +6,7 @@ from odoo.exceptions import ValidationError
 class student(models.Model):
     _name = "school.student"
     _description = "student details"
+    _inherit = ['mail.thread', 'mail.activity.mixin',]
     # _rec_name = 'gender'
 
     heading = fields.Char('Heading', copy=False, readonly=True, default= lambda x: ('Student List'))
@@ -167,30 +168,45 @@ class student(models.Model):
     def button_save(self):
         print("button clicked")
 
+    def action_open_list(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'student.last.school',
+            'target': 'new',
+        }
+
     def action_approve_student_email_send(self):
         """ Opens a wizard to compose an email, with relevant mail template loaded by default """
         self.ensure_one()
-        mail_template = self._find_mail_template()
-        if mail_template and mail_template.lang:
-            lang = mail_template._render_lang(self.ids)[self.id]
+        ir_model_data = self.env['ir.model.data']
+        try:
+            template_id = ir_model_data._xmlid_lookup('school.email_template_edi_student')[2]
+        except ValueError:
+            template_id = False
+
+        try:
+            compose_form_id = ir_model_data._xmlid_lookup('mail.email_compose_message_wizard_form')[2]
+        except ValueError:
+            compose_form_id = False
+
         ctx = {
-            'default_model': 'sale.order',
+            'default_model': 'school.student',
             'default_res_id': self.id,
-            'default_use_template': bool(mail_template),
-            'default_template_id': mail_template.id if mail_template else None,
+            'default_use_template': bool(template_id),
+            'default_template_id': template_id,
             'default_composition_mode': 'comment',
             'mark_so_as_sent': True,
-            'default_email_layout_xmlid': 'mail.mail_notification_layout_with_responsible_signature',
-            'proforma': self.env.context.get('proforma', False),
             'force_email': True,
-            'model_description': self.with_context(lang=lang).type_name,
         }
         return {
             'type': 'ir.actions.act_window',
+            'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'mail.compose.message',
-            'views': [(False, 'form')],
-            'view_id': False,
+            'views': [(compose_form_id, 'form')],
+            'view_id': compose_form_id,
             'target': 'new',
             'context': ctx,
         }
