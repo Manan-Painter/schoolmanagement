@@ -6,6 +6,7 @@ class school_student_list(models.Model):
     _name = "school.student.list"
     _description = "school.student.list"
 
+
     admission_list_id = fields.Many2one("admission.student")
     student_id = fields.Many2one('school.student', string='Student')
     age = fields.Char(related="student_id.age")
@@ -23,6 +24,7 @@ class school_student_list(models.Model):
 class admission(models.Model):
     _name = "admission.student"
     _description = "student details"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     # def _get_student_data(self):
     #     domain = "[('standard', '=', '12')]"
@@ -103,4 +105,37 @@ class admission(models.Model):
                 # })]})
         return res
 
+    def action_approve_admission_email_send(self):
+        """ Opens a wizard to compose an email, with relevant mail template loaded by default """
+        self.ensure_one()
+        ir_model_data = self.env['ir.model.data']
+        try:
+            template_id = ir_model_data._xmlid_lookup('school.email_template_edi_admission')[2]
+        except ValueError:
+            template_id = False
+
+        try:
+            compose_form_id = ir_model_data._xmlid_lookup('mail.email_compose_message_wizard_form')[2]
+        except ValueError:
+            compose_form_id = False
+
+        ctx = {
+            'default_model': 'admission.student',
+            'default_res_id': self.id,
+            'default_use_template': bool(template_id),
+            'default_template_id': template_id,
+            'default_composition_mode': 'comment',
+            'mark_so_as_sent': True,
+            'force_email': True,
+        }
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(compose_form_id, 'form')],
+            'view_id': compose_form_id,
+            'target': 'new',
+            'context': ctx,
+        }
 

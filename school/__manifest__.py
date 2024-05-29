@@ -23,6 +23,7 @@
         'data/ir_sequence_guardian_data.xml',
         'data/student.xml',
         "data/student_email_template.xml",
+        "data/admission_email_template.xml",
         "wizard/student_last_school_info_view.xml",
         'views/student.xml',
         'views/admission.xml',

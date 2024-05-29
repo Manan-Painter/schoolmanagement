@@ -82,7 +82,7 @@ class student(models.Model):
     #
     # @api.model_create_multi
     # def create(self, vals_list):
-    #     res = super(student, self).create(vals_list)
+    #     res = super(student, self).create(vals_list)9909994705 mayankbhai pandya
     #     # if res.gender == 'male':
     #     #     res.standard = "01"
     #     addmission_student = {
