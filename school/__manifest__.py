@@ -16,6 +16,10 @@
     'data': [
         'security/school_groups.xml',
         'security/ir.model.access.csv',
+        "report/school_student_report_action.xml",
+        "report/school_report_template.xml",
+        "report/admission_report_template.xml",
+        "report/inherit_invoice_template.xml",
         'data/ir_sequence_data.xml',
         'data/ir_sequence_addmission_data.xml',
         'data/ir_sequence_teacher_data.xml',
@@ -42,10 +46,7 @@
         "views/average_grade.xml",
         "views/purchase_order.xml",
         "wizard/admission_cancle_info_view.xml",
-        "report/school_student_report_action.xml",
-        "report/school_report_template.xml",
-        "report/admission_report_template.xml",
-        "report/inherit_invoice_template.xml",
+
     ],
     'installable': True,
     'application': True,

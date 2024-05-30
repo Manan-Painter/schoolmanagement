@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
         <record id="email_template_edi_admission" model="mail.template">
             <field name="name">Admission Approve</field>
             <field name="model_id" ref="school.model_admission_student"/>
@@ -13,14 +12,15 @@
                     <p style="margin: 0px; padding: 0px; font-size: 13px;">
                         Hello,  <t t-out="object.name or 'TEST'"/>
                         <br/><br/>
-                        Approved....
+
+                        <span style="font-size: 20px; font-weight: bold;">
+                             Congratulation <t t-out="object.name"></t> Your Admission Is Approved...<br/>
+                             Age: <t t-out="object.age"></t><br/>
+                            Standard: <t t-out="object.std"></t>
+
+                        </span>
                     </p>
                 </div>
             </field>
-<!--            <field name="report_template" ref="action_report_admission_student"/>-->
-<!--            <field name="report_name">{{ (object.name or '').replace('/','_') }}</field>-->
-<!--            <field name="lang">{{ object.partner_id.lang }}</field>-->
-<!--            <field name="auto_delete" eval="True"/>-->
         </record>
-    </data>
 </odoo>
