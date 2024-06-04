@@ -8,3 +8,25 @@ class StudentLastSchool(models.Model):
 
     name = fields.Char(string="Last School")
 
+
+# model.model
+#     res_partner
+#         name = manan
+#         city
+#
+# school
+#     inherit = res_partner
+#     student_name = name = manan
+#
+#
+# abstarct model
+#     name
+#     message_id
+#     city
+#
+#     sale_order models
+#     inherit = abstarct
+#     message_id
+
+
+

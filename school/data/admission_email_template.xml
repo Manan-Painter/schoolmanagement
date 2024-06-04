@@ -13,7 +13,7 @@
                         Hello,  <t t-out="object.name or 'TEST'"/>
                         <br/><br/>
 
-                        <span style="font-size: 20px; font-weight: bold;">
+                        <span style="font-size: 20px; font-weight: ;">
                              Congratulation <t t-out="object.name"></t> Your Admission Is Approved...<br/>
                              Age: <t t-out="object.age"></t><br/>
                             Standard: <t t-out="object.std"></t>

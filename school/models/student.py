@@ -61,7 +61,6 @@ class student(models.Model):
     @api.depends("registration_fees", "tution_fees")
     def _compute_total_fees(self):
         for rec in self:
-            print("<<<<<<<<<<<<")
             rec.total_fees = rec.registration_fees + rec.tution_fees
 
     def action_approve_student(self):
@@ -94,7 +93,6 @@ class student(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         res = super().create(vals_list)
-        print ("rrrrrrrr",res)
         for vals in vals_list:
             if not vals.get('heading') or vals['heading'] == _('New'):
                 vals['heading'] = self.env['ir.sequence'].next_by_code('school.student') or _('New')
@@ -105,7 +103,6 @@ class student(models.Model):
             ],
         }
         admission_id = self.env['admission.student'].create(admission_student_vals)
-        print ("=====admission_id==",)
         return res
 
         # teacher_student_vals = {
@@ -159,7 +156,6 @@ class student(models.Model):
 
     @api.model
     def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):
-        print("======ar===", args, name)
         args = list(args or [])
         if name:
             args += ['|', ('name', operator, name), ('name', operator, name)]

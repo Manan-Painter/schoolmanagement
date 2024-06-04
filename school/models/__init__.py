@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-
 from . import student
 from . import admission
 from . import teacher_staff
@@ -18,3 +17,4 @@ from . import product
 from . import avverage_grade
 from . import purchase_order
 from . import timesheet
+from . import admission_report

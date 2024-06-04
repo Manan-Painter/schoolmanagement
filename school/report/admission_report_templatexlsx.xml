@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <report
+       id="price_list_report"
+       model="price.list.wizard"
+       string="Price List Report"
+       report_type="xlsx"
+       name="price_list_report.price_list_report"
+       file="Price List Report"
+       attachment_use="False"/>
+</odoo>
