@@ -23,4 +23,13 @@
         <field name="binding_type">report</field>
     </record>
 
+    <record id="partner_xlsx" model="ir.actions.report">
+        <field name="name">Print to XLSX</field>
+        <field name="model">admission.student</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">school.partner_xlsx</field>
+        <field name="report_file">res_partner</field>
+        <field name="binding_model_id" ref="model_admission_student"/>
+    </record>
+
 </odoo>

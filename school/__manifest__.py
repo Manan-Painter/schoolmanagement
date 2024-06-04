@@ -12,7 +12,7 @@
     This is school Managemnt
     """,
     'category': 'school',
-    'depends': ["sale","mail","purchase","web","account"],
+    'depends': ["sale","mail","purchase","web","account","report_xlsx"],
     'data': [
         'security/school_groups.xml',
         'security/ir.model.access.csv',
@@ -20,7 +20,7 @@
         "report/school_report_template.xml",
         "report/admission_report_template.xml",
         "report/inherit_invoice_template.xml",
-        "report/admission_report_templatexlsx.xml",
+        # "report/admission_report_templatexlsx.xml",
         'data/ir_sequence_data.xml',
         'data/ir_sequence_addmission_data.xml',
         'data/ir_sequence_teacher_data.xml',

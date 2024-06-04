@@ -17,4 +17,4 @@ from . import product
 from . import avverage_grade
 from . import purchase_order
 from . import timesheet
-from . import admission_report
+# from . import admission_report
