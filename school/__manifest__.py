@@ -46,6 +46,7 @@
         "views/product.xml",
         "views/average_grade.xml",
         "views/purchase_order.xml",
+        "views/sale_order_payment.xml",
         "wizard/admission_cancle_info_view.xml",
 
     ],
