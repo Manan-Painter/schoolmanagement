@@ -24,7 +24,7 @@ class PartnerXlsx(models.AbstractModel):
         header_row_style = workbook.add_format({'bold': True, 'align': 'center', 'border': True})
         data_row_style = workbook.add_format({'align': 'center'})
 
-        sheet.merge_range('A1:F1', 'Admission Report', title)
+        sheet.merge_range('D3:H3', 'Admission Report', title)
         row = 3
         col = 0
 
