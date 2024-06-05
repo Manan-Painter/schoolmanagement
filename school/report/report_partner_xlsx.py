@@ -52,3 +52,5 @@ class PartnerXlsx(models.AbstractModel):
 
 
 
+
+
