@@ -1,8 +1,22 @@
 from odoo import api, fields, models, _
 
-
+from odoo.exceptions import UserError
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
+
+    can_register_payment = fields.Boolean(
+        string='Can Register Payment',
+        compute='_compute_can_register_payment',
+        store=True
+    )
+
+    @api.depends('state', 'invoice_ids.payment_state')
+    def _compute_can_register_payment(self):
+        for order in self:
+            order.can_register_payment = (
+                    order.state in ['sale', 'done'] and
+                    any(invoice.payment_state == 'not_paid' for invoice in order.invoice_ids)
+            )
 
     def action_register_payment(self):
         self.ensure_one()
