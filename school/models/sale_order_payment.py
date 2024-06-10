@@ -1,6 +1,6 @@
 from odoo import api, fields, models, _
-
 from odoo.exceptions import UserError
+
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
@@ -14,8 +14,8 @@ class SaleOrder(models.Model):
     def _compute_can_register_payment(self):
         for order in self:
             order.can_register_payment = (
-                    order.state in ['sale', 'done'] and
-                    any(invoice.payment_state == 'not_paid' for invoice in order.invoice_ids)
+                order.state in ['sale', 'done'] and
+                any(invoice.payment_state == 'not_paid' for invoice in order.invoice_ids)
             )
 
     def action_register_payment(self):
@@ -30,8 +30,8 @@ class SaleOrder(models.Model):
         if not invoices:
             raise UserError(_("There are no posted invoices related to this sale order."))
 
-        # For simplicity, we consider only the first posted invoice
-        invoice = invoices[0]
+        # Calculate the total amount due for all posted invoices
+        total_amount_due = sum(invoice.amount_residual for invoice in invoices)
 
         return {
             'name': 'Register Payment',
@@ -41,11 +41,11 @@ class SaleOrder(models.Model):
             'target': 'new',
             'context': {
                 'default_partner_id': self.partner_id.id,
-                'default_amount': invoice.amount_residual,
+                'default_amount': total_amount_due,
                 'default_payment_type': 'inbound',
                 'default_partner_type': 'customer',
                 'active_model': 'account.move',
-                'active_ids': [invoice.id],
-                'active_id': invoice.id,
+                'active_ids': invoices.ids,  # Pass all invoice IDs
+                'active_id': invoices[0].id,  # Use the first invoice ID for the form context
             },
         }
