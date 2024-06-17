@@ -65,4 +65,7 @@
             <field name="active" eval="True"/>
         </record>
 
+
+
+
 </odoo>

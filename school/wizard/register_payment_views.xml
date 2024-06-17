@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sale_order_register_wizard_view" model="ir.ui.view">
+        <field name="name">sale.order.register.wizard.view</field>
+        <field name="model">sale.order.register.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="sale_order_ids" widget="many2many_tags"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="server_action_sale_order_register_wizard_view" model="ir.actions.server">
+        <field name="name">Register Sale Order</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = {
+            'type':'ir.actions.act_window',
+            'res_model': 'sale.order.register.wizard',
+            'target': 'new',
+            'views': [(env.ref('school.sale_order_register_wizard_view').id,'form')],
+            'context': {'default_sale_order_ids':[(6,0,records.ids)]}
+            }
+
+        </field>
+
+    </record>
+
+
+</odoo>
