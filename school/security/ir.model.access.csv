@@ -13,4 +13,6 @@ school.access_average_grade,access_average_grade,school.model_average_grade,base
 student.last.school_acces,access_student_last_school,school.model_student_last_school,base.group_user,1,1,1,1
 school.access_admission_cancel,access_admission_cancel,school.model_admission_cancel,base.group_user,1,1,1,1
 school.access_school_student_list,access_school_student_list,school.model_school_student_list,base.group_user,1,1,1,1
-school.access_sale_order_register_wizard,access_sale_order_register_wizard,school.model_sale_order_register_wizard,base.group_user,1,1,1,1
+school.access_register_payment,access_register_payment,school.model_register_payment,base.group_user,1,1,1,1
+school.access_register_payment_product_line,access_register_payment_product_line,school.model_register_payment_product_line,base.group_user,1,1,1,1
+
