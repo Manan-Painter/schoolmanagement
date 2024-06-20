@@ -1,5 +1,6 @@
 from odoo import models, fields, api, Command
 import logging
+from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -48,7 +49,7 @@ class RegisterPaymentWizard(models.TransientModel):
         # Ensure all IDs are integers
         try:
             flat_sale_order_ids = [int(id) for id in flat_sale_order_ids]
-        except ValueError as e:
+        except ValidationError as e:
             _logger.error("Error converting sale_order_ids to integers: %s", e)
             raise e
 
@@ -63,10 +64,10 @@ class RegisterPaymentWizard(models.TransientModel):
                 continue
             if sale_order.state == 'cancel':
                 _logger.error("Sale order with ID %s is canceled. Aborting operation.", sale_order_id)
-                raise ValueError(f"Sale order with ID {sale_order_id} is canceled.")
+                raise ValidationError(f"Sale order with ID {sale_order_id} is canceled.")
             if sale_order.state in ['draft', 'sent']:  # Assuming 'draft' and 'sent' are states for quotations
                 _logger.error("Sale order with ID %s is in quotation state. Aborting operation.", sale_order_id)
-                raise ValueError(f"Sale order with ID {sale_order_id} is in quotation state.")
+                raise ValidationError(f"Sale order with ID {sale_order_id} is in quotation state.")
             valid_sale_order_ids.append(sale_order_id)
             _logger.info("Sale order with ID %s is valid and accessible.", sale_order_id)
 
