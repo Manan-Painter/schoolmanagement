@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_home_menu_student" name="Portal layout : student menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'student'" t-attf-class="breadcrumb-item #{'active ' if not student else ''}">
+                <a t-if="student" t-attf-href="/my/students?{{ keep_query() }}">Students</a>
+                <t t-else="">Students</t>
+            </li>
+            <li t-if="student" class="breadcrumb-item active">
+                <t t-esc="student.name" t-if="student.name != '/'"/>
+                <t t-else=""><em>Student</em></t>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home" name="Show School Student" inherit_id="portal.portal_my_home" priority="25">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Student</t>
+                <t t-set="url" t-value="'/my/students'"/>
+                <t t-set="placeholder_count" t-value="'student_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_students" name="My Student">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Students</t>
+            </t>
+            <t t-if="students" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Student #</th>
+                        <th>Date Of Birth</th>
+                        <th>Gender</th>
+                        <th>Standard</th>
+                        <th>Teacher</th>
+                        <th>Stage</th>
+                    </tr>
+                </thead>
+                <t t-foreach="students" t-as="stud">
+                    <tr>
+                        <td><a t-attf-href="/my/students/#{stud.id}?{{ keep_query() }}"><span t-field="stud.name"/></a></td>
+                        <td>
+                            <span t-field="stud.date_of_birth"/>
+                        </td>
+                        <td>
+                            <span t-field="stud.gender"/>
+                        </td>
+                        <td>
+                            <span t-field="stud.school_standard"/>
+                        </td>
+                        <td>
+                            <span t-field="stud.teacher_id.name"/>
+                        </td>
+                        <td>
+                            <span t-field="stud.state"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+            <p t-else="">There are currently no quotations for your account.</p>
+        </t>
+    </template>
+</odoo>
