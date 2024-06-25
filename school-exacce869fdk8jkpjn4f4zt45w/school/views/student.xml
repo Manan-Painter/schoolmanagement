@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="school_student_kanban">
+        <field name="name">school.student.Kanban</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <kanban class="o_modules_kanban">
+                <field name="standard"/>
+                <field name="age"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_module_vignette">
+                            <div class="oe_kanban_content flex-grow-1">
+                                <div class="o_kanban_record_title oe_kanban_details">
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                                <div class="o_kanban_record_subtitle">
+                                    <field name="standard"/>
+                                </div>
+                                <div>
+                                    <field name="standard"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_hotel_customer_search" model="ir.ui.view">
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="gender"/>
+                <filter string="Gender" name="group_by_activity_type" context="{'group_by': 'gender'}"/>
+                <filter string="Standard" name="std" context="{'group_by': 'standard'}"/>
+                <filter string="12th Standard" name="group_by_activity_type" domain="[('standard','=', '12')]"/>
+<!--            <filter string="Age" name="group_by_activity_type" domain="[('age','>=', '5')]"/>-->
+                <filter string="Male" name="group_by_activity_type" domain="[('gender','=', 'male')]"/>
+                <filter string="Female" name="group_by_activity_type" domain="[('gender','=', 'female')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="student_tree" model="ir.ui.view">
+        <field name="name">student.tree</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="standard"/>
+                <field name="date_of_birth"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="registration_fees" sum="ABC"/>
+                <field name="tution_fees" sum="MMM"/>
+                <field name="total_fees" sum="Total" widget="monetary"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_teacher_form" model="ir.ui.view">
+        <field name="name">view.teacher.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_Consultation,done"
+                           options="{'clickable': True}"/>
+                    <button name="action_approve_student" id="action_student_approve" string="Approve Student"
+                            type="object"/>
+                    <button name="action_cancel_student" id="action_student_cancel" string="Cancel" type="object"/>
+                    <button name="%(school.action_student_last_school)d" string="Student Last School" type="action"/>
+                    <button name="action_open_list" string="Student Last School 1" type="object"/>
+                    <button name="action_approve_student_email_send" string="Send by Email" type="object" class="btn-primary"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="heading" readonly="1"/>
+
+                            <h2>
+                                <field name="priority" widget="priority" class="mr-3"/>
+                            </h2>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" widget="char_emojis"/>
+                            <field name="school_standard" />
+                            <field name="date_of_birth"/>
+                            <field name="company_id"/>
+                            <field name="teacher_id"/>
+                        </group>
+                        <group>
+                            <field name="age"/>
+                            <field name="gender"/>
+                            <field name="teacher_id"/>
+                            <button name="button_save" string="Save" class="oe_highlight" type="object"/>
+                            <!--<field name="average_ids"/>-->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Some Issue" nama="Some Issue">
+                            <field name="issues" placeholder="Enter Some Issue"/>
+                        </page>
+                        <page string="Grade">
+                            <field name="grade_ids">
+                                <tree>
+                                    <field name="science"/>
+                                    <field name="chemistry"/>
+                                    <field name="hindi"/>
+                                    <field name="gujarati"/>
+                                    <field name="maths"/>
+                                    <field name="result"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Personal Information" groups="school.group_school_din">
+                            <group>
+                                <group>
+                                    <field name="address"/>
+                                    <field name="contact"/>
+                                    <field name="city"/>
+                                </group>
+                                <group>
+                                    <field name="admission_id"/>
+                                    <field name="partner_id"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Fees">
+                            <group>
+                                <group>
+                                    <field name="registration_fees"/>
+                                    <field name="tution_fees" groups="school.group_school_principle,school.group_school_teacher"/>
+                                    <field name="currency_id"/>
+                                    <field name="company_id"/>
+                                </group>
+                                <group>
+                                    <field name="stud_phone"/>
+                                    <field name="total_fees"/>
+                                    <field name="donation_fees" widget="monetary"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_school_student_pivot" model="ir.ui.view">
+        <field name="name">school.stident.pivot</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <pivot string="School" sample="1">
+                <field name="partner_id" type="row"/>
+                <field name="company_id" type="row"/>
+                <field name="registration_fees" type="col"/>
+                <field name="total_fees" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_school_student_graph" model="ir.ui.view">
+        <field name="name">school.stident.graph</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <graph string="SSchool" sample="1">
+                <field name="partner_id"/>
+                <field name="total_fees" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_school_list">
+        <field name="name">Student List</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">tree,form,pivot,graph,kanban</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first addmission form
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_school_list_1">
+        <field name="name">Student List 1</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">tree,form,pivot,graph,kanban</field>
+         <field name="domain">[('total_fees', '>',0)]</field>
+        <field name="context">{'default_partner_id': 10, 'default_contact': 'ABC'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first addmission form
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="menu_student_list_root"
+            name="Student List"
+            parent="menu_student_root"
+            action="school.action_school_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_student_list_root1"
+            name="Student List 1"
+            parent="menu_student_root"
+            action="action_school_list_1"
+            sequence="0"/>
+</odoo>

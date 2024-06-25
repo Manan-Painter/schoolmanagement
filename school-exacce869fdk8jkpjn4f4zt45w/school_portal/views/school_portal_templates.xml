@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_home_menu_student" name="Portal layout : student menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'student'" t-attf-class="breadcrumb-item #{'active ' if not student else ''}">
+                <a t-if="student" t-attf-href="/my/students?{{ keep_query() }}">Students</a>
+                <t t-else="">Students</t>
+            </li>
+            <li t-if="student" class="breadcrumb-item active">
+                <t t-esc="student.name" t-if="student.name != '/'"/>
+                <t t-else=""><em>Student</em></t>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home" name="Show School Student" inherit_id="portal.portal_my_home" priority="25">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Student</t>
+                <t t-set="url" t-value="'/my/students'"/>
+                <t t-set="placeholder_count" t-value="'student_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_students" name="My Student">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Students</t>
+            </t>
+            <t t-if="students" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Student #</th>
+                        <th>Date Of Birth</th>
+                        <th>Gender</th>
+                        <th>Standard</th>
+                        <th>Teacher</th>
+                        <th>Stage</th>
+                    </tr>
+                </thead>
+                <t t-foreach="students" t-as="stud">
+                    <tr>
+                        <td><a t-att-href="stud.get_portal_url()"><span t-esc="stud.name"/></a></td>
+                        <td>
+                            <span t-field="stud.date_of_birth"/>
+                        </td>
+                        <td>
+                            <span t-field="stud.gender"/>
+                        </td>
+                        <td>
+                            <span t-field="stud.school_standard"/>
+                        </td>
+                        <td>
+                            <span t-field="stud.teacher_id.name"/>
+                        </td>
+                        <td>
+                            <span t-field="stud.state"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+            <p t-else="">There are currently no quotations for your account.</p>
+        </t>
+    </template>
+
+    <template id="portal_my_student_view" name="My Student View" inherit_id="portal.portal_sidebar" primary="True">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+          <t t-set="o_portal_fullwidth_alert">
+              <t t-call="portal.portal_back_in_edit_mode">
+                  <t t-set="backend_url" t-value="'/web#model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (student._name, student.id, student.env.ref('school.action_school_list').id)"/>
+              </t>
+          </t>
+
+          <div class="row mt16 o_portal_purchase_sidebar">
+              <!-- Sidebar -->
+              <t t-call="portal.portal_record_sidebar">
+                  <t t-set="classes" t-value="'col-lg-auto d-print-none'"/>
+
+                  <!--<t t-set="title">
+                      <h2 class="mb-0"><b t-field="student.total_fees" data-id="total_fees"/> </h2>
+                  </t>-->
+                  <t t-set="entries">
+                      <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
+                          <li class="list-group-item flex-grow-1">
+                              <div class="o_download_pdf btn-toolbar flex-sm-nowrap">
+                                  <div class="btn-group flex-grow-1 me-1 mb-1">
+                                      <a class="btn btn-secondary btn-block o_download_btn" t-att-href="student.get_portal_url(report_type='pdf', download=True)" title="Download"><i class="fa fa-download"/> Download</a>
+                                  </div>
+                                  <div class="btn-group flex-grow-1 mb-1">
+                                      <a class="btn btn-secondary btn-block o_print_btn o_portal_invoice_print" t-att-href="student.get_portal_url(report_type='pdf')" id="print_invoice_report" title="Print" target="_blank"><i class="fa fa-print"/> Print</a>
+                                  </div>
+                              </div>
+                          </li>
+
+                          <li class="navspy list-group-item ps-0 flex-grow-1" t-ignore="true" role="complementary">
+                              <ul class="nav flex-column bs-sidenav"></ul>
+                          </li>
+
+                          <li class="list-group-item flex-grow-1">
+                              <div class="small mb-1"><strong class="text-muted">Purchase Representative</strong></div>
+                              <div class="row flex-nowrap">
+                                  <div class="col flex-grow-0 pe-2">
+                                      <img class="rounded-circle mr4 float-start o_portal_contact_img"  alt="Contact"/>
+                                  </div>
+                                  <div class="col ps-0" style="min-width: 150px">
+                                      <span t-field="student.partner_id" t-options='{"widget": "contact", "fields": ["name", "phone"], "no_marker": True}'/>
+                                      <a href="#discussion" class="small"><i class="fa fa-comment"></i> Send message</a>
+                                  </div>
+                              </div>
+                          </li>
+                      </ul>
+                  </t>
+              </t>
+
+              <!-- Page content -->
+              <div id="quote_content" class="col-12 col-lg justify-content-end">
+
+                  <!-- main content -->
+                  <div t-attf-class="card #{'pb-5' if report_type == 'html' else ''}" id="portal_purchase_content">
+                      <div t-call="school_portal.school_student_portal_content"/>
+                  </div>
+
+                  <!-- chatter -->
+                  <div id="purchase_order_communication" class="mt-4">
+                      <h2>History</h2>
+                      <t t-call="portal.message_thread"/>
+                  </div>
+              </div><!-- // #quote_content -->
+          </div>
+      </xpath>
+    </template>
+
+    <template id="school_student_portal_content" name="Purchase Order Portal Content">
+      <!-- Intro -->
+      <div id="introduction" t-attf-class="pb-2 pt-3 #{'card-header bg-white' if report_type == 'html' else ''}">
+        <h2 class="my-0">
+          <t>
+            Student
+          </t>
+          <em t-esc="student.name"/>
+        </h2>
+      </div>
+
+      <div t-attf-class="#{'card-body' if report_type == 'html' else ''}">
+          <!-- Informations -->
+          <div id="informations">
+              <div class="row" id="po_date">
+                  <div class="mb-3 col-6">
+                    <t>
+                      <strong>Date Of Birth:</strong>
+                    </t>
+                    <span t-field="student.date_of_birth" t-options='{"widget": "date"}'/>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-6">
+                    <strong class="d-block mb-1">Student Information:</strong>
+                    <address t-field="student.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                    <strong>Standard:</strong> <span t-field="student.school_standard"/><br/>
+                  </div>
+              </div>
+
+          </div>
+
+          <section id="details" style="page-break-inside: auto;" class="mt32">
+              <h3 id="details">Grade</h3>
+
+              <div class="table-responsive" >
+                <table t-att-data-order-id="student.id" class="table table-sm" t-att-data-token="student.access_token" id="purchase_order_table">
+                    <thead class="bg-100">
+                        <tr>
+                            <th class="text-start">Student</th>
+                            <th class="text-end">Science</th>
+                            <th class="text-end">Chemistry</th>
+                            <th class="text-end">Hindi</th>
+                            <th class="text-end">Gujarati</th>
+                            <th class="text-end">Maths</th>
+                            <th class="text-end">Result</th>
+                        </tr>
+                    </thead>
+                    <tbody class="purchase_tbody">
+                          <t t-foreach="student.grade_ids" t-as="line">
+                            <tr>
+                                <t>
+                                    <td id="product_name"><span t-field="line.student_id"/></td>
+                                    <td class="text-end"><span t-field="line.science"/></td>
+                                    <td class="text-end"><span t-field="line.chemistry"/></td>
+                                    <td class="text-end"><span t-field="line.hindi"/></td>
+                                    <td class="text-end"><span t-field="line.gujarati"/></td>
+                                    <td class="text-end"><span t-field="line.maths"/></td>
+                                    <td class="text-end"><span t-field="line.result"/></td>
+                                </t>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+              </div>
+          </section>
+      </div>
+  </template>
+</odoo>

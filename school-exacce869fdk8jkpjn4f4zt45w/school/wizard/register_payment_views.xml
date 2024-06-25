@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_register_wizard_view" model="ir.ui.view">
+        <field name="model">register.payment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="sale_order_ids" widget="many2many_tags"/>
+                    </group>
+                    <notebook>
+                        <page string="Product Details">
+                            <field name="product_lines">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="cost"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="server_action_sale_order_register_wizard_view" model="ir.actions.server">
+    <field name="name">Register Sale Order</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="binding_model_id" ref="sale.model_sale_order"/>
+    <field name="state">code</field>
+    <field name="code">
+        action = {
+            'type': 'ir.actions.act_window',
+            'res_model': 'register.payment',
+            'target': 'new',
+            'views': [(env.ref('school.sale_order_register_wizard_view').id, 'form')],
+            'context': {'default_sale_order_ids': [(6, 0, records.ids)]}
+        }
+    </field>
+</record>
+
+
+</odoo>

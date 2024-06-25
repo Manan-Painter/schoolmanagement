@@ -12,6 +12,7 @@
     ],
     'data': [
         'views/school_portal_templates.xml',
+        'views/school_portal_admission_template.xml',
     ],
     'installable': True,
     'application': True,

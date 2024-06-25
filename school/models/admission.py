@@ -24,7 +24,7 @@ class school_student_list(models.Model):
 class admission(models.Model):
     _name = "admission.student"
     _description = "student details"
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin','portal.mixin']
 
     # def _get_student_data(self):
     #     domain = "[('standard', '=', '12')]"

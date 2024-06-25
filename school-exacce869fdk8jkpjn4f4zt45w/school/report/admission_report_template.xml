@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_admission_student_template">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <h2>Admission Report</h2>
+                    <p>Name:
+                        <span t-field="o.name"/>
+                    </p>
+                    <h3>Student</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Standard</th>
+                                <th scope="col">Dob</th>
+                                <th scope="col">Age</th>
+                            </tr>
+                        </thead>
+
+                        <t t-foreach="o.student_ids" t-as="student">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span t-field="student.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="student.school_standard"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="student.date_of_birth"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="student.age"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </t>
+
+                    </table>
+                    <!--                       <p>Name: <span t-field="student.name"/></p><p>Age: <span t-field="student.age"/></p>-->
+                    <h3>Student List</h3>
+                    <table class="table">
+                        <t t-set="current_reg_total" t-value="0"/>
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Registration Fees</th>
+                            </tr>
+                        </thead>
+
+                        <t t-foreach="o.student_list_ids" t-as="stud">
+                            <t t-set="current_reg_total" t-value="current_reg_total + stud.stu_list_registration_fees"/>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span t-field="stud.student_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="stud.age"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="stud.stu_list_registration_fees"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </t>
+
+                    </table>
+                    <div class="d-flex justify-content-end">
+                         <h6 class="mx-auto p-2 mb-3 bg-secondary text-white">Total</h6>
+                        <span class="p-2 mb-3 bg-secondary text-white" t-esc="current_reg_total"/>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_admission_student">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="school.report_admission_student_template"/>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="student_demo" model="school.student">
+        <field name="name">Demo</field>
+        <field name="standard">11</field>
+        <field name="age">12</field>
+        <field name="gender">male</field>
+        <field name="city">Baroda</field>
+        <field name="contact">7567224790</field>
+    </record>
+
+        <record id="student_manan" model="school.student">
+        <field name="name">Manan</field>
+        <field name="standard">12</field>
+        <field name="age">23</field>
+        <field name="gender">male</field>
+        <field name="city">Khambhat</field>
+        <field name="contact">7567224790</field>
+    </record>
+
+        <record id="student_ankit" model="school.student">
+        <field name="name">Ankit</field>
+        <field name="standard">11</field>
+        <field name="age">22</field>
+        <field name="gender">male</field>
+        <field name="city">Rajasthan</field>
+        <field name="contact">8849274451</field>
+    </record>
+    </data>
+</odoo>

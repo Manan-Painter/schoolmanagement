@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+            id="menu_school_root"
+            name="school"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_student_root"
+            name="Student"
+            parent="menu_school_root"
+            sequence="0"/>
+
+    <!--<menuitem
+            id="menu_student_list_root"
+            name="Student List"
+            parent="menu_student_root"
+            action="school.action_school_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_student_list_root1"
+            name="Student List 1"
+            parent="menu_student_root"
+            action="action_school_list_1"
+            sequence="0"/>-->
+
+    <menuitem
+            id="menu_admission_root"
+            name="Admission Form"
+            parent="menu_student_root"
+            action="action_school_admission"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_staff_root"
+            name="Staff"
+            parent="menu_school_root"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_staff_teacher_root"
+            name="Teacher"
+            parent="menu_staff_root"
+            action="action_teacher_list"
+            groups="group_school_teacher"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_staff_peon_root"
+            name="Peon"
+            parent="menu_staff_root"
+            action="action_peon_list"
+            sequence="0"/>
+    <!--groups="!school.group_school_student"-->
+
+    <menuitem
+            id="menu_staff_guardian_root"
+            name="Guardian"
+            parent="menu_staff_root"
+            action="action_guardian_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_Attendance_root"
+            name="Attendance"
+            parent="menu_school_root"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_student_attendance_root"
+            name="Student"
+            parent="menu_Attendance_root"
+            action="action_student_attendance_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_teacher_attendance_root"
+            name="Teacher"
+            parent="menu_Attendance_root"
+            action="action_teacher_attendance_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_guardian_attendance_root"
+            name="Guardian"
+            parent="menu_Attendance_root"
+            action="action_guardian_attendance_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_peon_attendance_root"
+            name="Peon"
+            parent="menu_Attendance_root"
+            action="action_peon_attendance_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_books_root"
+            name="Books"
+            parent="menu_school_root"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_school_books_root"
+            name="Books"
+            parent="menu_books_root"
+            action="action_school_books_list"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_grade_root"
+            name="Grade"
+            parent="menu_school_root"
+            sequence="0"/>
+
+<!--    <menuitem-->
+<!--            id="menu_average_grade_root"-->
+<!--            name="Average Grade"-->
+<!--            parent="menu_grade_root"-->
+<!--            action="action_average_garde_list"-->
+<!--            sequence="0"/>-->
+</odoo>

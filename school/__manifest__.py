@@ -49,7 +49,8 @@
         "views/sale_order_payment.xml",
         "wizard/admission_cancle_info_view.xml",
         "wizard/register_payment_views.xml",
-        "views/school_portal_templates.xml",
+        # "views/school_portal_templates.xml",
+        "views/school_portal_admission_template.xml",
 
     ],
     'installable': True,

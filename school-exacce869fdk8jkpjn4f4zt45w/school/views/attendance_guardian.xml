@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="attendance_guardian_kanban">
+        <field name="name">attendance.guardian.kanban</field>
+        <field name="model">attendance.guardian</field>
+        <field name="arch" type="xml">
+            <kanban class="o_modules_kanban">
+                <field name="name"/>
+                <field name="remark"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_module_vignette">
+                            <div class="oe_kanban_content flex-grow-1">
+                                <div class="o_kanban_record_title oe_kanban_details">
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                                <div class="o_kanban_record_subtitle">
+                                    <field name="remark"/>
+                                </div>
+                                <div>
+                                    <field name="remark"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_attendance_guardian_search" model="ir.ui.view">
+        <field name="model">attendance.guardian</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="present"/>
+                <field name="absent"/>
+                <field name="remark"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_attendance_guardian_tree" model="ir.ui.view">
+        <field name="model">attendance.guardian</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="present"/>
+                <field name="absent"/>
+                <field name="remark"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_attendance_guardian_form" model="ir.ui.view">
+        <field name="model">attendance.guardian</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="present"/>
+                            <field name="absent"/>
+                            <field name="first_name"/>
+                        </group>
+                        <group>
+                            <field name="remark"/>
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                            <field name="guardian_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_guardian_attendance_list">
+        <field name="name">Guardian Attendance</field>
+        <field name="res_model">attendance.guardian</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Submit Your Attendance Form
+            </p>
+        </field>
+    </record>
+
+</odoo>

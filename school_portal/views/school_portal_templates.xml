@@ -66,4 +66,14 @@
             <p t-else="">There are currently no quotations for your account.</p>
         </t>
     </template>
+
+    <template id="portal_my_home" name="Show School Admission" inherit_id="portal.portal_my_home" priority="25">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry"/>
+                <t t-set="url">/my/admissions<t/>
+                <t t-set="title">Admission</t>
+                <t t-set="placeholder_count" t-value="'admission_count'"/>
+            </t>
+        </xpath>
+    </template>
 </odoo>

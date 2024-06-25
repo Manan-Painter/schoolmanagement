@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <template id="portal_my_home" name="Show School Student" inherit_id="portal.portal_my_home" priority="25">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Admission</t>
+                <t t-set="url" t-value="'/my/admission'"/>
+                <t t-set="placeholder_count" t-value="'admission_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_admission" name="My Admission">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Admissions</t>
+            </t>
+            <!--<t t-if="admissions" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Admission #</th>
+                        <th>Date Of Birth</th>
+                        <th>Gender</th>
+                        <th>Standard</th>
+                        <th>Stage</th>
+                    </tr>
+                </thead>
+                <t t-foreach="admissions" t-as="add">
+                    <tr>
+                        <td><a t-attf-href="/my/admissions/#{stud.id}?{{ keep_query() }}"><span t-field="add.name"/></a></td>
+                        <td>
+                            <span t-field="add.date_of_birth"/>
+                        </td>
+                        <td>
+                            <span t-field="add.gender"/>
+                        </td>
+                        <td>
+                            <span t-field="add.school_standard"/>
+                        </td>
+
+                        <td>
+                            <span t-field="add.state"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>-->
+            <p t-else="">There are currently no quotations for your account.</p>
+        </t>
+    </template>
+</odoo>

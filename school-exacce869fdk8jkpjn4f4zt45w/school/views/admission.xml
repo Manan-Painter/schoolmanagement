@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="admission_student_kanban">
+        <field name="name">admission.student.Kanban</field>
+        <field name="model">admission.student</field>
+        <field name="arch" type="xml">
+            <kanban class="o_modules_kanban">
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="city"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_module_vignette">
+                            <div class="oe_kanban_content flex-grow-1">
+                                <div class="o_kanban_record_title oe_kanban_details">
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                                <div class="o_kanban_record_subtitle">
+                                    <field name="gender"/>
+                                </div>
+                                <div>
+                                    <field name="city"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_admission_student_search" model="ir.ui.view">
+        <field name="model">admission.student</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="std"/>
+                <filter string="Medium" name="medium" context="{'group_by': 'medium'}"/>
+                <filter string="10th Class" name="group_by_activity_type" domain="[('std','=', '10')]"/>
+                <filter string="Gujarati" name="group_by_activity_type" domain="[('second_language','=', 'gujarati')]"/>
+                <filter string="English" name="group_by_activity_type" domain="[('second_language','=', 'english')]"/>
+
+            </search>
+        </field>
+    </record>
+
+    <record id="view_admission_student_tree" model="ir.ui.view">
+        <field name="model">admission.student</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="std"/>
+                <field name="academic_year"/>
+                <field name="admission_date"/>
+                <field name="second_language"/>
+                <field name="medium"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_admission_student_form" model="ir.ui.view">
+        <field name="model">admission.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_Consultation,done" options="{'clickable': True}"/>
+                    <button name="action_approve_admission" id="action_admission_approve" string="Approve Admission"
+                            type="object"/>
+                    <button name="action_approve_admission_email_send" string="Send by Email" type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="heading" readonly="1"/>
+                            <h2>
+                                <field name="priority" widget="priority" class="mr-3"/>
+                            </h2>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="student_id" domain="[('partner_id.city','=','Fremont')]"/>
+                            <field name="academic_year"/>
+                            <field name="admission_date"/>
+                        </group>
+                        <group>
+                            <field name="std"/>
+                            <field name="second_language"/>
+                            <field name="medium"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Personal Information">
+                            <group>
+                                <group>
+                                    <field name="date_of_birth"/>
+                                    <field name="age"/>
+                                    <field name="city"/>
+                                </group>
+                                <group>
+                                    <field name="gender"/>
+                                    <field name="address"/>
+                                    <field name="contact"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Students">
+                        <field name="student_ids"/>
+                    </page>
+                        <page string="Student List">
+                            <field name="student_list_ids">
+                                <form>
+                                    <group>
+                                    <field name="student_id" string="Student"/>
+                                        <field name="age"/>
+                                        <field name="stu_list_registration_fees"/>
+                                    </group>
+                                </form>
+                                <tree string="Student List">
+                                    <field name="student_id" string="Student"/>
+                                    <field name="age"/>
+                                    <field name="stu_list_registration_fees"/>FF
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_school_admission">
+        <field name="name">Admission Form</field>
+        <field name="res_model">admission.student</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{'default_medium': 'Gujarati','default_second_language': 'Gujarati'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first addmission form
+            </p>
+        </field>
+    </record>
+
+</odoo>

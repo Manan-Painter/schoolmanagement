@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_view_inherit" model="ir.ui.view">
+        <field name="name">sale.order.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="after">
+                <field name="teacher_id"/>
+            </field>
+
+            <xpath expr="//form/sheet/group/group[@name='order_details']/field[@name='validity_date']" position="before">
+                <field name="teacher_id"/>
+            </xpath>
+
+            <xpath expr="//page[@name='other_information']/group/group[@name='sales_person']" position="inside">
+                <field name="teacher_id"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                <field name="line_teacher_id"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="after">
+                <field name="line_teacher_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
+

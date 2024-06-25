@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Inherit the sale order form view to add the button -->
+        <record id="school_sale_order_view_inherit" model="ir.ui.view">
+            <field name="name">sale.order.inherit.school</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                 <header position="inside">
+                    <button name="action_register_payment" type="object" string="Register Payment"
+                           attrs="{'invisible': [('can_register_payment', '=', False)]}"/>
+                </header>
+                <xpath expr="//sheet" position="inside">
+                    <group>
+                        <field name="can_register_payment" invisible="1"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

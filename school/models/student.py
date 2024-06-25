@@ -6,7 +6,7 @@ from odoo.exceptions import ValidationError
 class student(models.Model):
     _name = "school.student"
     _description = "student details"
-    _inherit = ['mail.thread', 'mail.activity.mixin',]
+    _inherit = ['mail.thread', 'mail.activity.mixin','portal.mixin']
     # _rec_name = 'gender'
 
     heading = fields.Char('Heading', copy=False, readonly=True, default= lambda x: ('Student List'))
@@ -57,6 +57,15 @@ class student(models.Model):
     #     for std in self:
     #         if int(std.standard) >= 10:
     #             raise ValidationError("Plz Enter Primary standard")
+
+    def _compute_access_url(self):
+        super(student, self)._compute_access_url()
+        for stud in self:
+            stud.access_url = '/my/students/%s' % (stud.id)
+
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        return 'Student -%s' % (self.name)
 
     @api.depends("registration_fees", "tution_fees")
     def _compute_total_fees(self):
