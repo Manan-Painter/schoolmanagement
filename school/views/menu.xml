@@ -81,12 +81,12 @@
             action="action_teacher_attendance_list"
             sequence="0"/>
 
-    <menuitem
-            id="menu_guardian_attendance_root"
-            name="Guardian"
-            parent="menu_Attendance_root"
-            action="action_guardian_attendance_list"
-            sequence="0"/>
+<!--    <menuitem-->
+<!--            id="menu_guardian_attendance_root"-->
+<!--            name="Guardian"-->
+<!--            parent="menu_Attendance_root"-->
+<!--            action="action_guardian_attendance_list"-->
+<!--            sequence="0"/>-->
 
     <menuitem
             id="menu_peon_attendance_root"

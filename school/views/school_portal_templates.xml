@@ -21,6 +21,11 @@
                 <t t-set="url" t-value="'/my/students'"/>
                 <t t-set="placeholder_count" t-value="'student_count'"/>
             </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Admission</t>
+                <t t-set="url" t-value="'/my/admission'"/>
+                <t t-set="placeholder_count" t-value="'admission_count'"/>
+            </t>
         </xpath>
     </template>
 
@@ -34,12 +39,10 @@
             <t t-if="students_list" t-call="portal.portal_table">
                 <thead>
                     <tr class="active">
-                        <th>Student #</th>
+                        <th>Admission #</th>
                         <th>Date Of Birth</th>
                         <th>Gender</th>
                         <th>Standard</th>
-                        <th>Teacher</th>
-                        <th>Stage</th>
                     </tr>
                 </thead>
                 <t t-foreach="students_list" t-as="stud">
@@ -65,6 +68,46 @@
                 </t>
             </t>
             <p t-else="">There are currently no students for your account.</p>
+        </t>
+    </template>
+
+    <template id="portal_my_admission" name="My Admission">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Admissions</t>
+            </t>
+            <t t-if="admissions" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Admission #</th>
+                        <th>Date Of Birth</th>
+                        <th>Gender</th>
+                        <th>Standard</th>
+                        <th>Stage</th>
+                    </tr>
+                </thead>
+                <t t-foreach="admissions" t-as="add">
+                    <tr>
+                        <td><a t-attf-href="/my/admissions/#{add.id}?{{ keep_query() }}"><span t-field="add.name"/></a></td>
+                        <td>
+                            <span t-field="add.date_of_birth"/>
+                        </td>
+                        <td>
+                            <span t-field="add.gender"/>
+                        </td>
+                        <td>
+                            <span t-field="add.std"/>
+                        </td>
+
+                        <td>
+                            <span t-field="add.state"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+            <p t-else="">There are currently no quotations for your account.</p>
         </t>
     </template>
 

@@ -9,13 +9,20 @@ from odoo.exceptions import AccessError, MissingError
 class CustomerPortal(portal.CustomerPortal):
 
     def _prepare_home_portal_values(self, counters):
+        print("ccccccccc", counters)
         values = super()._prepare_home_portal_values(counters)
-        values['student_count'] = request.env['school.student'].search_count([]) \
-            if request.env['school.student'].check_access_rights('read', raise_exception=False) else 0
-
+        if 'student_count' in counters:
+            values['student_count'] = request.env['school.student'].search_count([]) \
+                if request.env['school.student'].check_access_rights('read', raise_exception=False) else 0
+        if 'admission_count' in counters:
+            values['admission_count'] = request.env['admission.student'].search_count([]) \
+                if request.env['admission.student'].check_access_rights('read', raise_exception=False) else 0
         return values
 
     def _prepare_student_domain(self):
+        return []
+
+    def _prepare_admission_domain(self):
         return []
 
     def _prepare_searchbar_sortings(self):
@@ -96,3 +103,40 @@ class CustomerPortal(portal.CustomerPortal):
         # ensure attachment are accessible with access token inside template
         values = self._student_get_page_view_values(student_sudo, access_token, **kw)
         return request.render("school.portal_my_student_view", values)
+
+    @http.route(['/my/admission', '/my/admission/page/<int:page>'], type='http', auth="user", website=True)
+    def portal_my_admission(self, page=1, date_begin=None, date_end=None, sortby=None, **kw):
+        values = self._prepare_portal_layout_values()
+        Admission = request.env['admission.student']
+        domain = self._prepare_admission_domain()
+
+        searchbar_sortings = self._prepare_searchbar_sortings()  # Corrected line
+        if not sortby or sortby not in searchbar_sortings:
+            sortby = 'date'
+        order = searchbar_sortings[sortby]['order']
+
+        admission_count = Admission.search_count(domain)
+        # pager
+        pager = portal_pager(
+            url="/my/admission",
+            url_args={'date_begin': date_begin, 'date_end': date_end, 'sortby': sortby},
+            total=admission_count,
+            page=page,
+            step=self._items_per_page
+        )
+
+        # content according to pager and archive selected
+        admissions = Admission.search(domain, order=order, limit=self._items_per_page, offset=pager['offset'])
+        request.session['my_admission_history'] = admissions.ids[:100]
+
+        values.update({
+            'date': date_begin,
+            'date_end': date_end,
+            'admissions': admissions,
+            'page_name': 'admission',
+            'default_url': '/my/admission',
+            'pager': pager,
+            'searchbar_sortings': searchbar_sortings,
+            'sortby': sortby
+        })
+        return request.render("school.portal_my_admission", values)
