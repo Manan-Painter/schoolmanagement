@@ -141,7 +141,7 @@
           <t>
             Student
           </t>
-          <em t-esc="student.name"/>
+          <t t-esc="student.name"/>
         </h2>
       </div>
 

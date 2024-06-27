@@ -14,8 +14,21 @@
         </xpath>
     </template>
 
-    <template id="portal_my_home" name="Show School Student" inherit_id="portal.portal_my_home" priority="25">
-        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+    <template id="portal_my_home_menu_admission" name="Portal layout : admission menu entries" inherit_id="portal.portal_breadcrumbs" priority="20">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'admission'" t-attf-class="breadcrumb-item #{'active ' if not admission else ''}">
+                <a t-if="admission" t-attf-href="/my/admission?{{ keep_query() }}">Admissions</a>
+                <t t-else="">Admissions</t>
+            </li>
+            <li t-if="admission" class="breadcrumb-item active">
+                <t t-esc="admission.name" t-if="admission.name != '/'"/>
+                <t t-else=""><em>Admission</em></t>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home" name="Show School Admission" inherit_id="portal.portal_my_home" priority="25">
+        <xpath expr="//div[hasclass ('o_portal_docs')]" position="inside">
             <t t-call="portal.portal_docs_entry">
                 <t t-set="title">Student</t>
                 <t t-set="url" t-value="'/my/students'"/>
@@ -90,7 +103,7 @@
                 </thead>
                 <t t-foreach="admissions" t-as="add">
                     <tr>
-                        <td><a t-attf-href="/my/admissions/#{add.id}?{{ keep_query() }}"><span t-field="add.name"/></a></td>
+                        <td><a t-att-href="add.get_portal_url()"><span t-field="add.name"/></a></td>
                         <td>
                             <span t-field="add.date_of_birth"/>
                         </td>
@@ -119,7 +132,7 @@
               </t>
           </t>
 
-          <div class="row mt16 o_portal_purchase_sidebar">
+          <div class="row   mt16 o_portal_purchase_sidebar">
               <!-- Sidebar -->
               <t t-call="portal.portal_record_sidebar">
                   <t t-set="classes" t-value="'col-lg-auto d-print-none'"/>
@@ -178,6 +191,71 @@
       </xpath>
     </template>
 
+    <template id="portal_my_admission_view" name="My Admission View" inherit_id="portal.portal_sidebar" primary="True">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+          <t t-set="o_portal_fullwidth_alert">
+              <t t-call="portal.portal_back_in_edit_mode">
+                  <t t-set="backend_url" t-value="'/web#model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (admission._name, admission.id, admission.env.ref('school.action_school_admission').id)"/>
+              </t>
+          </t>
+
+          <div class="row mt16 o_portal_purchase_sidebar">
+              <!-- Sidebar -->
+              <t t-call="portal.portal_record_sidebar">
+                  <t t-set="classes" t-value="'col-lg-auto d-print-none'"/>
+
+<!--                  <t t-set="title">-->
+<!--                      <h2 class="mb-0"><b t-field="admission.total_fees" data-id="total_fees"/> </h2>-->
+<!--                  </t>-->
+                  <t t-set="entries">
+                      <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
+                          <li class="list-group-item flex-grow-1">
+                              <div class="o_download_pdf btn-toolbar flex-sm-nowrap">
+                                  <div class="btn-group flex-grow-1 me-1 mb-1">
+                                      <a class="btn btn-secondary btn-block o_download_btn" t-att-href="admission.get_portal_url(report_type='pdf', download=True)" title="Download"><i class="fa fa-download"/> Download</a>
+                                  </div>
+                                  <div class="btn-group flex-grow-1 mb-1">
+                                      <a class="btn btn-secondary btn-block o_print_btn o_portal_invoice_print" t-att-href="admission.get_portal_url(report_type='pdf')" id="print_invoice_report" title="Print" target="_blank"><i class="fa fa-print"/> Print</a>
+                                  </div>
+                              </div>
+                          </li>
+
+                          <li class="navspy list-group-item ps-0 flex-grow-1" t-ignore="true" role="complementary">
+                              <ul class="nav flex-column bs-sidenav"></ul>
+                          </li>
+
+                          <li class="list-group-item flex-grow-1">
+                              <div class="small mb-1"><strong class="text-muted">Purchase Representative</strong></div>
+                              <div class="row flex-nowrap">
+                                  <div class="col flex-grow-0 pe-2">
+                                      <img class="rounded-circle mr4 float-start o_portal_contact_img"  alt="Contact"/>
+                                  </div>
+<!--                                  <div class="col ps-0" style="min-width: 150px">-->
+<!--                                      <span t-field="admission.company_id.partner_id" t-options='{"widget": "contact", "fields": ["name", "phone", "street"], "no_marker": True}'/>-->
+<!--                                      <a href="#discussion" class="small"><i class="fa fa-comment"></i> Send message</a>-->
+<!--                                  </div>-->
+                              </div>
+                          </li>
+                      </ul>
+                  </t>
+              </t>
+              <!-- Page content -->
+              <div id="quote_content" class="col-12 col-lg justify-content-end">
+
+                  <!-- main content -->
+                  <div t-attf-class="card #{'pb-5' if report_type == 'html' else ''}" id="portal_purchase_content">
+                      <div t-call="school.action_admission_portal_content"/>
+                  </div>
+
+                  <!-- chatter -->
+                  <div id="purchase_order_communication" class="mt-4">
+                      <h2>History</h2>
+                      <t t-call="portal.message_thread"/>
+                  </div>
+              </div><!-- // #quote_content -->
+          </div>
+      </xpath>
+    </template>
     <template id="school_student_portal_content" name="Purchase Order Portal Content">
       <!-- Intro -->
       <div id="introduction" t-attf-class="pb-2 pt-3 #{'card-header bg-white' if report_type == 'html' else ''}">
@@ -237,6 +315,69 @@
                                     <td class="text-end"><span t-field="line.gujarati"/></td>
                                     <td class="text-end"><span t-field="line.maths"/></td>
                                     <td class="text-end"><span t-field="line.result"/></td>
+                                </t>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+              </div>
+          </section>
+      </div>
+  </template>
+
+    <template id="action_admission_portal_content" name="Purchase Order Portal Content">
+      <!-- Intro -->
+      <div id="introduction" t-attf-class="pb-2 pt-3 #{'card-header bg-white' if report_type == 'html' else ''}">
+        <h2 class="my-0">
+          <t>
+            Admission
+          </t>
+          <em t-esc="admission.name"/>
+        </h2>
+      </div>
+
+      <div t-attf-class="#{'card-body' if report_type == 'html' else ''}">
+          <!-- Informations -->
+          <div id="informations">
+              <div class="row" id="po_date">
+                  <div class="mb-3 col-6">
+                    <t>
+                      <strong>Date Of Birth:</strong>
+                    </t>
+                    <span t-field="admission.date_of_birth" t-options='{"widget": "date"}'/>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-6">
+                    <strong class="d-block mb-1">Admission Information:</strong>
+<!--                    <address t-field="admission.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>-->
+                    <strong>Standard:</strong> <span t-field="admission.std"/><br/>
+                  </div>
+              </div>
+
+          </div>
+
+          <section id="details" style="page-break-inside: auto;" class="mt32">
+              <h3 id="details">Student</h3>
+
+              <div class="table-responsive" >
+                <table t-att-data-order-id="admission.id" class="table table-sm" t-att-data-token="admission.access_token" id="purchase_order_table">
+                    <thead class="bg-100">
+                        <tr>
+                            <th class="text-start">Name</th>
+                            <th class="text-end">Standard</th>
+                            <th class="text-end">Date_of_birth</th>
+                            <th class="text-end">Student_Age</th>
+                        </tr>
+                    </thead>
+                    <tbody class="purchase_tbody">
+                          <t t-foreach="admission.student_ids" t-as="line">
+                            <tr>
+                                <t>
+                                    <td id="product_name"><span t-field="line.name"/></td>
+                                    <td class="text-end"><span t-field="line.standard"/></td>
+                                    <td class="text-end"><span t-field="line.date_of_birth"/></td>
+                                    <td class="text-end"><span t-field="line.age"/></td>
                                 </t>
                             </tr>
                         </t>

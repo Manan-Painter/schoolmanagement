@@ -90,6 +90,7 @@ class CustomerPortal(portal.CustomerPortal):
 
     @http.route(['/my/students/<int:student>'], type='http', auth="public", website=True)
     def portal_my_student_view(self, student, access_token=None, **kw):
+        print ("studenttttttttttt")
         try:
             student_sudo = self._document_check_access('school.student', student, access_token=access_token)
         except (AccessError, MissingError):
@@ -139,4 +140,44 @@ class CustomerPortal(portal.CustomerPortal):
             'searchbar_sortings': searchbar_sortings,
             'sortby': sortby
         })
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",values)
         return request.render("school.portal_my_admission", values)
+
+    def _show_admission_report(self, admisiion_sudo, report_type, download):
+        raise MissingError(_('There is nothing to report.'))
+
+    def _admission_get_page_view_values(self, admission, access_token, **kwargs):
+        page_name = 'admission'
+        history = 'my_admission_history'
+        try:
+            admission_accessible = bool(self._document_check_access('admission.student', admission.id))
+        except (AccessError, MissingError):
+            admission_accessible = False
+        values = {
+            'page_name': page_name,
+            'admission': admission,
+            'user': request.env.user,
+            'student_accessible': admission_accessible,
+        }
+
+        values = self._get_page_view_values(admission, access_token, values, history, False, **kwargs)
+        return values
+
+    @http.route(['/my/admission/<int:admission>'], type='http', auth="public", website=True)
+    def portal_my_admission_view(self, admission, access_token=None, **kw):
+        print ("=========admision")
+        try:
+            admission_sudo = self._document_check_access('admission.student', admission, access_token=access_token)
+        except (AccessError, MissingError):
+            return request.redirect('/my')
+
+        report_type = kw.get('report_type')
+        if report_type in ('html', 'pdf', 'text'):
+            return self._show_report(model=admission_sudo, report_type=report_type,
+                                     report_ref='school.action_report_school_admission', download=kw.get('download'))
+
+        # ensure attachment are accessible with access token inside template
+        values = self._admission_get_page_view_values(admission_sudo, access_token, **kw)
+        print("???????????????????????????",values)
+        return request.render("school.portal_my_admission_view", values)
+

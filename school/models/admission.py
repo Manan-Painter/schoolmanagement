@@ -59,6 +59,15 @@ class admission(models.Model):
     # domain = "[('standard', '=', '12'))]"
     # , domain = _get_student_data
 
+    def _compute_access_url(self):
+        super(admission, self)._compute_access_url()
+        for add in self:
+            add.access_url = '/my/admission/%s' % (add.id)
+
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        return 'Admission -%s' % (self.name)
+
     def action_approve_admission(self):
         for rec in self:
             rec.state = "in_Consultation"
