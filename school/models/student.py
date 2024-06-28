@@ -1,4 +1,7 @@
 from odoo import fields, models, api,_
+import logging
+
+_logger = logging.getLogger(__name__)
 
 from datetime import date
 from odoo.exceptions import ValidationError
@@ -23,7 +26,7 @@ class student(models.Model):
     contact = fields.Char(string="Contact")
     teacher_id = fields.Many2one('teacher.student', string='Teacher')
     admission_id = fields.Many2one('admission.student', string='Admission')
-    partner_id = fields.Many2one("res.partner", string="Partner")
+    partner_id = fields.Many2one('res.users',related='user_id.partner_id')
     company_id = fields.Many2one("res.company",  default=lambda self: self.env.company)
     currency_id = fields.Many2one(
         related='company_id.currency_id',
@@ -47,11 +50,13 @@ class student(models.Model):
     issues = fields.Html(string="Issue")
     company_id = fields.Many2one('res.company','Company')
     # teacher_id = fields.Many2one("teacher.student", "teacher")
+    created_user_id = fields.Many2one('res.users', string="Created User")
+    user_id = fields.Many2one('res.users', string='Related User', ondelete='cascade')
 
 
-    _sql_constraints = [
-        ('number_uniq', 'CHECK(school_standard >= 10)', 'Please enter a valid Standard  .'),
-    ]
+    # _sql_constraints = [
+    #     ('number_uniq', 'CHECK(school_standard >= 10)', 'Please enter a valid Standard  .'),
+    # ]
     # @api.constrains('standard')
     # def _check_std(self):
     #     for std in self:
@@ -87,41 +92,41 @@ class student(models.Model):
                 findage.age = today.year - findage.date_of_birth.year
             else:
                 findage.age = 0
-    #
-    # @api.model_create_multi
-    # def create(self, vals_list):
-    #     res = super(student, self).create(vals_list)9909994705 mayankbhai pandya
-    #     # if res.gender == 'male':
-    #     #     res.standard = "01"
-    #     addmission_student = {
-    #         "first_name" : res.first_name,
-    #     }
-    #     self.env["admission.student"].create(addmission_student)
-    #     return res
 
     @api.model_create_multi
     def create(self, vals_list):
-        res = super().create(vals_list)
-        for vals in vals_list:
-            if not vals.get('heading') or vals['heading'] == _('New'):
-                vals['heading'] = self.env['ir.sequence'].next_by_code('school.student') or _('New')
-        admission_student_vals = {
-            "name": res.name,
-            "student_list_ids": [
-                (0, 0, {'student_id': res.id}),
-            ],
-        }
-        admission_id = self.env['admission.student'].create(admission_student_vals)
+        res = super(student, self).create(vals_list)
+        for rec in res:
+            user_vals = {
+                'name': rec.name + " " + rec.gender,
+                'login': rec.name,
+                'email': rec.name,
+                'password': rec.name,
+                'groups_id': [(6, 0, [self.env.ref('base.group_user').id])]  # Assign default group
+            }
+            user = self.env['res.users'].create(user_vals)
+            print("-user--", user)
+            rec.created_user_id = user.id
         return res
 
-        # teacher_student_vals = {
-        #     "name": res.teacher,
-        #     "student_ids": [
-        #         (0, 0, {'student_ids': res.id}),
-        #     ],
-        # }
-        # teacher_id = self.env['teacher.student'].create(teacher_student_vals)
-        # return res
+# @api.model_create_multi
+    # def create(self, vals_list):
+    #     for vals in vals_list:
+    #         print ("=======vals=",vals)
+    #         print("dwdwqfwqf", vals)
+    #         if not vals.get('date_of_birth') or vals['date_of_birth'] == _('New'):
+    #             print("insideeeeeeeeee")
+    #             # vals['reference'] = self.env['ir.sequence'].next_by_code('school.student') or _('New')
+    #             user_vals = {
+    #                 'name': vals['name'] + " " + vals['gender'],
+    #                 'login': vals['name'],
+    #                 'email': vals['name'],
+    #                 'password': vals['name'],
+    #                 # 'partner_id': vals.partner_id.id,
+    #                 'groups_id': [(6, 0, [self.env.ref('base.group_user').id])]  # Assign default group
+    #             }
+    #             self.env['res.users'].create(user_vals)
+    #     return super().create(vals_list)
 
 
     # @api.model_create_multi
@@ -155,6 +160,11 @@ class student(models.Model):
             self.contact = "A"
         elif vals.get('gender') == 'female':
             self.contact = "B"
+        if vals.get('name'):
+            user_id = self.env['res.users'].search([('id','=', self.created_user_id.id)])
+            if user_id:
+                user_id.name = vals.get('name')
+            print ("uuuuu",user_id)
         return super().write(vals)
 
     # def unlink(self):
