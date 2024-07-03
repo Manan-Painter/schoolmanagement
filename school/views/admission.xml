@@ -69,7 +69,6 @@
                     <field name="state" widget="statusbar" statusbar_visible="draft,in_Consultation,done" options="{'clickable': True}"/>
                     <button name="action_approve_admission" id="action_admission_approve" string="Approve Admission"
                             type="object"/>
-                    <button name="action_cancel_admission" id="action_admission_cancel" string="Cancel" type="object"/>
                     <button name="%(school.action_admission_cancel)d" string="Admission Cancel" type="action"/>
                     <button name="action_approve_admission_email_send" string="Send by Email" type="object" class="btn-primary"/>
                 </header>

@@ -70,12 +70,12 @@ class teacher(models.Model):
     #         args += ['|', ('name', operator, name), ('qualification', operator, name)]
     #     return self._search(args, limit=limit, access_rights_uid=name_get_uid)
 
-    def name_get(self):
-        result = []
-        for account in self:
-            name = account.code + ' ' + account.name
-            result.append((account.id, name))
-        return result
+    # def name_get(self):
+    #     result = []
+    #     for account in self:
+    #         name = account.code + ' ' + account.name
+    #         result.append((account.id, name))
+    #     return result
 
     # def name_get(self):
     #     print("aaaaaaaaa",self)

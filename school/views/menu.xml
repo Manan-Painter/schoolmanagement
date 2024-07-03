@@ -81,12 +81,14 @@
             action="action_teacher_attendance_list"
             sequence="0"/>
 
-<!--    <menuitem-->
-<!--            id="menu_guardian_attendance_root"-->
-<!--            name="Guardian"-->
-<!--            parent="menu_Attendance_root"-->
-<!--            action="action_guardian_attendance_list"-->
-<!--            sequence="0"/>-->
+    <!-- Uncommented for future use
+    <menuitem
+            id="menu_guardian_attendance_root"
+            name="Guardian"
+            parent="menu_Attendance_root"
+            action="action_guardian_attendance_list"
+            sequence="0"/>
+    -->
 
     <menuitem
             id="menu_peon_attendance_root"
@@ -114,10 +116,10 @@
             parent="menu_school_root"
             sequence="0"/>
 
-<!--    <menuitem-->
-<!--            id="menu_average_grade_root"-->
-<!--            name="Average Grade"-->
-<!--            parent="menu_grade_root"-->
-<!--            action="action_average_garde_list"-->
-<!--            sequence="0"/>-->
+    <menuitem
+            id="menu_average_grade_root"
+            name="Average Grade"
+            parent="menu_grade_root"
+            action="action_average_grade_list_cus_cus"
+            sequence="100"/>
 </odoo>

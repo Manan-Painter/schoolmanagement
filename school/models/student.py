@@ -63,6 +63,18 @@ class student(models.Model):
     #         if int(std.standard) >= 10:
     #             raise ValidationError("Plz Enter Primary standard")
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            print ("=====vals==",vals.get('heading'),self.env['ir.sequence'].next_by_code('school.student'))
+            if vals.get('heading', 'New') == 'New':
+                vals['heading'] = self.env['ir.sequence'].next_by_code('school.student') or '/'
+
+            # if not vals.get('heading') or vals['heading'] == _('New'):
+            #     print ("idfffffffff")
+            #     vals['heading'] = self.env['ir.sequence'].next_by_code('school.student') or _('New')
+        return super().create(vals_list)
+
     def _compute_access_url(self):
         super(student, self)._compute_access_url()
         for stud in self:
@@ -93,21 +105,21 @@ class student(models.Model):
             else:
                 findage.age = 0
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        res = super(student, self).create(vals_list)
-        for rec in res:
-            user_vals = {
-                'name': rec.name + " " + rec.gender,
-                'login': rec.name,
-                'email': rec.name,
-                'password': rec.name,
-                'groups_id': [(6, 0, [self.env.ref('base.group_user').id])]  # Assign default group
-            }
-            user = self.env['res.users'].create(user_vals)
-            print("-user--", user.id)
-            rec.created_user_id = user.id
-        return res
+    # @api.model_create_multi
+    # def create(self, vals_list):
+    #     res = super(student, self).create(vals_list)
+    #     for rec in res:
+    #         user_vals = {
+    #             'name': rec.name + " " + rec.gender,
+    #             'login': rec.name,
+    #             'email': rec.name,
+    #             'password': rec.name,
+    #             'groups_id': [(6, 0, [self.env.ref('base.group_user').id])]  # Assign default group
+    #         }
+    #         user = self.env['res.users'].create(user_vals)
+    #         print("-user--", user.id)
+    #         rec.created_user_id = user.id
+    #     return res
 
 
 

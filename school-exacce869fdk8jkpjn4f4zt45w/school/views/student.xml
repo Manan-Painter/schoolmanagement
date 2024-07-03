@@ -215,7 +215,7 @@
             id="menu_student_list_root"
             name="Student List"
             parent="menu_student_root"
-            action="school.action_school_list"
+            action="action_school_list"
             sequence="0"/>
 
     <menuitem

@@ -106,8 +106,6 @@
                             <field name="teacher_id"/>
 <!--                            <field name="user_id"/>-->
                             <button name="button_save" string="Save" class="oe_highlight" type="object"/>
-                            <button name="%(action_school_list)d" string="Action Save" type="action"
-                                    class="oe_highlight"/>
                             <!--<field name="average_ids"/>-->
                         </group>
                     </group>
