@@ -5,6 +5,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+
             <field name="payment_term_id" position="after">
                 <field name="teacher_id"/>
             </field>
@@ -24,7 +25,14 @@
             <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="after">
                 <field name="line_teacher_id"/>
             </xpath>
+            <header position="inside">
+                    <button name="action_register_payment" type="object" string="Register Payment"
+                           attrs="{'invisible': [('can_register_payment', '=', False)]}"/>
+                     <button name="action_open_print_wizard" type="object" string='Print'/>
+                <field name="can_register_payment" invisible="1"/>
+            </header>
         </field>
+
     </record>
 
 </odoo>

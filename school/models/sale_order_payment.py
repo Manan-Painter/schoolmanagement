@@ -49,3 +49,15 @@ class SaleOrder(models.Model):
                 'active_id': invoices[0].id,  # Use the first invoice ID for the form context
             },
         }
+
+
+    def action_open_print_wizard(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'sale.order.print.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_sale_order_id': self.id,
+            }
+        }

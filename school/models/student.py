@@ -50,8 +50,8 @@ class student(models.Model):
     issues = fields.Html(string="Issue")
     company_id = fields.Many2one('res.company','Company')
     # teacher_id = fields.Many2one("teacher.student", "teacher")
-    created_user_id = fields.Many2one('res.users', string="Created User")
-    user_id = fields.Many2one('res.users', string='Related User', ondelete='cascade')
+    created_user_id = fields.Many2one('res.users' , string="Created User")
+    partner_id = fields.Many2one('res.partner',related='created_user_id.partner_id',     string='Related User')
 
 
     # _sql_constraints = [
@@ -105,9 +105,11 @@ class student(models.Model):
                 'groups_id': [(6, 0, [self.env.ref('base.group_user').id])]  # Assign default group
             }
             user = self.env['res.users'].create(user_vals)
-            print("-user--", user)
+            print("-user--", user.id)
             rec.created_user_id = user.id
         return res
+
+
 
 # @api.model_create_multi
     # def create(self, vals_list):

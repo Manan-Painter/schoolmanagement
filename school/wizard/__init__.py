@@ -4,4 +4,5 @@
 from . import student_last_school
 from . import admission_cancle
 from . import register_payment
+from . import print_report
 
