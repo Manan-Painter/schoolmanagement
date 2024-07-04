@@ -57,7 +57,7 @@ class admission(models.Model):
     student_id = fields.Many2one('school.student' ,string='Student')
     student_list_ids = fields.One2many('school.student.list', 'admission_list_id', string='Students')
     # domain = "[('standard', '=', '12'))]"
-    # , domain = _get_student_data
+    # domain = _get_student_data
 
     def _compute_access_url(self):
         super(admission, self)._compute_access_url()

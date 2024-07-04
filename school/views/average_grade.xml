@@ -29,6 +29,8 @@
                         <field name="gujarati"/>
                         <field name="maths"/>
                         <field name="result"/>
+                        <field name="teacher_id"/>
+                        <field name="created_user_id"/>
                     </group>
                 </sheet>
             </form>

@@ -4,8 +4,6 @@ import logging
 _logger = logging.getLogger(__name__)
 
 from datetime import date
-from odoo.exceptions import ValidationError
-
 class student(models.Model):
     _name = "school.student"
     _description = "student details"
@@ -69,10 +67,6 @@ class student(models.Model):
             print ("=====vals==",vals.get('heading'),self.env['ir.sequence'].next_by_code('school.student'))
             if vals.get('heading', 'New') == 'New':
                 vals['heading'] = self.env['ir.sequence'].next_by_code('school.student') or '/'
-
-            # if not vals.get('heading') or vals['heading'] == _('New'):
-            #     print ("idfffffffff")
-            #     vals['heading'] = self.env['ir.sequence'].next_by_code('school.student') or _('New')
         return super().create(vals_list)
 
     def _compute_access_url(self):
@@ -105,69 +99,6 @@ class student(models.Model):
             else:
                 findage.age = 0
 
-    # @api.model_create_multi
-    # def create(self, vals_list):
-    #     res = super(student, self).create(vals_list)
-    #     for rec in res:
-    #         user_vals = {
-    #             'name': rec.name + " " + rec.gender,
-    #             'login': rec.name,
-    #             'email': rec.name,
-    #             'password': rec.name,
-    #             'groups_id': [(6, 0, [self.env.ref('base.group_user').id])]  # Assign default group
-    #         }
-    #         user = self.env['res.users'].create(user_vals)
-    #         print("-user--", user.id)
-    #         rec.created_user_id = user.id
-    #     return res
-
-
-
-# @api.model_create_multi
-    # def create(self, vals_list):
-    #     for vals in vals_list:
-    #         print ("=======vals=",vals)
-    #         print("dwdwqfwqf", vals)
-    #         if not vals.get('date_of_birth') or vals['date_of_birth'] == _('New'):
-    #             print("insideeeeeeeeee")
-    #             # vals['reference'] = self.env['ir.sequence'].next_by_code('school.student') or _('New')
-    #             user_vals = {
-    #                 'name': vals['name'] + " " + vals['gender'],
-    #                 'login': vals['name'],
-    #                 'email': vals['name'],
-    #                 'password': vals['name'],
-    #                 # 'partner_id': vals.partner_id.id,
-    #                 'groups_id': [(6, 0, [self.env.ref('base.group_user').id])]  # Assign default group
-    #             }
-    #             self.env['res.users'].create(user_vals)
-    #     return super().create(vals_list)
-
-
-    # @api.model_create_multi
-    # def create(self, vals_list):
-    #     res = super().create(vals_list)
-    #     print("rrrrrrrr", res)
-    #     for vals in vals_list:
-    #         if not vals.get('heading') or vals['heading'] == _('New'):
-    #             vals['heading'] = self.env['ir.sequence'].next_by_code('school.student') or _('New')
-    #     admission_student_vals = {
-    #         "name": res.teacher,
-    #         "student_list_ids": [
-    #             (0, 0, {'student_id': res.id}),
-    #         ],
-    #     }
-    #     admission_id = self.env['admission.student'].create(admission_student_vals)
-    #     print("=====admission_id==", admission_id)
-    #     return res
-
-
-    # @api.model_create_multi
-    # def create(self, vals_list):
-    #     for vals in vals_list:
-    #         if not vals.get('name') or vals['name'] == _('New'):
-    #             vals['name'] = self.first_name
-    #     return super().create(vals_list)
-
     def write(self, vals):
         if vals.get('gender') == 'male':
             self.city ="khambhat"
@@ -180,12 +111,6 @@ class student(models.Model):
                 user_id.name = vals.get('name')
             print ("uuuuu",user_id)
         return super().write(vals)
-
-    # def unlink(self):
-    #     for rec in self:
-    #         if rec.gender == 'male':
-    #             raise ValidationError('You can not Delete <%s>' % rec.first_name)
-    #     return super(student, self).unlink()
 
     @api.model
     def _name_search(self, name='', args=None, operator='ilike', limit=100, name_get_uid=None):

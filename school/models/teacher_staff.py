@@ -20,6 +20,8 @@ class teacher(models.Model):
     contact = fields.Char(string="Contact")
     student_ids = fields.One2many('school.student', 'teacher_id', string='Students')
     attendance_id = fields.Many2one('attendance.teacher','attendance')
+    users = fields.Many2one('res.users')
+    users_cus = fields.Many2one('res.users')
     remark = fields.Char(string="Teacher Remark", related='attendance_id.remark')
     company_id = fields.Many2one("res.company","Company")
     # student_id = fields.Many2one("school.student","Student")
@@ -44,11 +46,11 @@ class teacher(models.Model):
             else:
                 findage.age = 0
 
-    def write(self, vals):
-        if vals.get('gender') == 'male':
-            self.student_ids = "A"
-        elif vals.get('gender') == 'female':
-            self.student_ids = "B"
+    # def write(self, vals):
+    #     if vals.get('gender') == 'male':
+    #         self.student_ids = "A"
+    #     elif vals.get('gender') == 'female':
+    #         self.student_ids = "B"
 
     @api.model_create_multi
     def create(self, vals_list):

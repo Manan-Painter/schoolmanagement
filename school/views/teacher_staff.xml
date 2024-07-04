@@ -84,6 +84,7 @@
                         <group>
                             <field name="name"/>
                             <field name="qualification"/>
+                            <field name="users_cus"/>
                             <field name="company_id"/>
                         </group>
                         <group>

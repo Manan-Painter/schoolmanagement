@@ -34,6 +34,13 @@
         <field name="comment">the user will have access to all data in the school application.</field>
     </record>
 
+    <record id="group_school_grade" model="res.groups">
+        <field name="name">Grade</field>
+        <field name="category_id" ref="base.module_category_school"/>
+        <field name="implied_ids" eval="[(4, ref('group_school_teacher'))]"/>
+        <field name="comment">the user will have access to all data in the school application.</field>
+    </record>
+
     <record id="group_school_account" model="res.groups">
         <field name="name">Account</field>
         <field name="category_id" ref="base.module_category_school"/>
@@ -41,17 +48,17 @@
         <field name="comment">the user will have access to all data in the school application.</field>
     </record>
 
-    <record id="demo_record_user_rule" model="ir.rule">
-        <field name="name">See Draft Student</field>
-        <field ref="school.model_school_student" name="model_id"/>
-        <field name="domain_force">[('state', '=', 'draft')]</field>
-        <field name="groups" eval="[(4, ref('school.group_school_teacher'))]"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_unlink" eval="True"/>
-        <field name="active" eval="True"/>
-    </record>
+<!--    <record id="demo_record_user_rule" model="ir.rule">-->
+<!--        <field name="name">See Draft Student</field>-->
+<!--        <field ref="school.model_school_student" name="model_id"/>-->
+<!--        <field name="domain_force">[('state', '=', 'draft')]</field>-->
+<!--        <field name="groups" eval="[(4, ref('school.group_school_teacher'))]"/>-->
+<!--        <field name="perm_read" eval="True"/>-->
+<!--        <field name="perm_write" eval="True"/>-->
+<!--        <field name="perm_create" eval="True"/>-->
+<!--        <field name="perm_unlink" eval="True"/>-->
+<!--        <field name="active" eval="True"/>-->
+<!--    </record>-->
 
     <record id="demo_record_user_rule_admin" model="ir.rule">
             <field name="name">See Draft Student Admin</field>
@@ -63,6 +70,28 @@
             <field name="perm_create" eval="True"/>
             <field name="perm_unlink" eval="True"/>
             <field name="active" eval="True"/>
+    </record>
+
+        <record id="teacher_record_rule" model="ir.rule">
+        <field name="name">Teacher Record Rule</field>
+        <field name="model_id" ref="school.model_school_student" />
+        <field name="domain_force">[('teacher_id.users_cus.id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('school.group_school_teacher'))]"/>
+        <field name="perm_create" eval="False"/>
+        </record>
+
+    <record id="record_rule_grade" model="ir.rule">
+        <field name="name">Grade Record Rule</field>
+        <field name="model_id" ref="school.model_average_grade" />
+        <field name="domain_force">[('created_user_id.id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('school.group_school_grade'))]"/>
+    </record>
+
+    <record id="teacher_record_rule_admin" model="ir.rule">
+        <field name="name">Teacher Record Rule</field>
+        <field name="model_id" ref="school.model_school_student" />
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('school.group_school_din'))]"/>
     </record>
 
 </odoo>
