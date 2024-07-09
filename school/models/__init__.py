@@ -18,4 +18,5 @@ from . import avverage_grade
 from . import purchase_order
 from . import timesheet
 from . import sale_order_payment
+from . import school
 # from . import admission_report

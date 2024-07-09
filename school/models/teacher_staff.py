@@ -22,9 +22,11 @@ class teacher(models.Model):
     attendance_id = fields.Many2one('attendance.teacher','attendance')
     users = fields.Many2one('res.users')
     users_cus = fields.Many2one('res.users')
+    student_id = fields.Many2one('school.student',string='Student')
     remark = fields.Char(string="Teacher Remark", related='attendance_id.remark')
     company_id = fields.Many2one("res.company","Company")
     # student_id = fields.Many2one("school.student","Student")
+    school_id = fields.Many2one('school.school', string='School')
     state = fields.Selection(selection=[
         ('draft', 'Draft'),
         ('in_Consultation', 'In Consultation'),

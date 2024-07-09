@@ -16,4 +16,4 @@ school.access_school_student_list,access_school_student_list,school.model_school
 school.access_register_payment,access_register_payment,school.model_register_payment,base.group_user,1,1,1,1
 school.access_register_payment_product_line,access_register_payment_product_line,school.model_register_payment_product_line,base.group_user,1,1,1,1
 school.access_sale_order_print_wizard,access_sale_order_print_wizard,school.model_sale_order_print_wizard,base.group_user,1,1,1,1
-
+school.access_school_school,access_school_school,school.model_school_school,base.group_user,1,1,1,1

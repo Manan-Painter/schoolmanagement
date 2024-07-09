@@ -122,4 +122,19 @@
             parent="menu_grade_root"
             action="action_average_grade_list_cus_cus"
             sequence="100"/>
+
+    <menuitem
+            id="menu_school_list"
+            name="Schools"
+            parent="menu_school_root"
+            sequence="0"/>
+
+    <menuitem
+            id="menu_average_school"
+            name="School"
+            parent="menu_school_list"
+            action="action_school_list_root"
+            sequence="0"/>
+
+
 </odoo>

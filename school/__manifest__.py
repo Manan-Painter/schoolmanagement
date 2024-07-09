@@ -46,6 +46,7 @@
         "views/res_partener.xml",
         "views/product.xml",
         "views/average_grade.xml",
+        "views/school.xml",
         # "views/sale_order_payment.xml",
         "wizard/admission_cancle_info_view.xml",
         # "wizard/print_report.xml",

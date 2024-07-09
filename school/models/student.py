@@ -23,6 +23,7 @@ class student(models.Model):
     city = fields.Char(string="City")
     contact = fields.Char(string="Contact")
     teacher_id = fields.Many2one('teacher.student', string='Teacher')
+    school_id = fields.Many2one('school.school',string='School')
     admission_id = fields.Many2one('admission.student', string='Admission')
     partner_id = fields.Many2one('res.users',related='user_id.partner_id')
     company_id = fields.Many2one("res.company",  default=lambda self: self.env.company)
@@ -50,6 +51,16 @@ class student(models.Model):
     # teacher_id = fields.Many2one("teacher.student", "teacher")
     created_user_id = fields.Many2one('res.users' , string="Created User")
     partner_id = fields.Many2one('res.partner',related='created_user_id.partner_id',     string='Related User')
+
+    @api.onchange('teacher_id')
+    def onchange_teacher_id(self):
+        for rec in self:
+            return {'domain': {'school_id': [('teacher_id', '=', rec.teacher_id.id)]}}
+
+    @api.onchange('school_id')
+    def onchange_school_id(self):
+        for rec in self:
+            return {'domain': {'teacher_id': [('school_id', '=', rec.school_id.id)]}}
 
 
     # _sql_constraints = [
