@@ -96,7 +96,7 @@
                     </group>
                     <notebook>
                         <page string="Personal Information">
-                            <group>
+                            <group>git
                                 <group>
                                     <field name="date_of_birth"/>
                                     <field name="age"/>
